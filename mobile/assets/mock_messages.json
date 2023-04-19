@@ -1,0 +1,20 @@
+[
+  {
+    "author": {
+      "username": "baba_durum"
+    },
+    "createdAt": 1598438497000,
+    "id": "10001",
+    "text": "Baba dürüm",
+    "image": "https://1.bp.blogspot.com/-C_M2ZPyf9-c/XDc9zX_Ac3I/AAAAAAAASrA/4Mt3DbRcussneoJnq5ztJz9MswBb0a_zgCLcBGAs/s1600/durumcu%2Bbaba%2Bmenu%2Bfiyatlari.jpg"
+  },
+  {
+    "author": {
+      "username": "lahmacun"
+    },
+    "createdAt": 1598438498000,
+    "id": "10002",
+    "text": "Lahmacun",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Lahmacun.jpg/1200px-Lahmacun.jpg"
+  }
+]
