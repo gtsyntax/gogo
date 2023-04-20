@@ -1,19 +1,20 @@
-package com.teamtwentyfour.fooddeliverysaas.dto;
+package com.gogo.productservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.util.UUID;
+
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class ProductRequest {
-
-    private String id;
     private String name;
-    private String desc;
-    private double price;
-    private String storeid;
+    private String description;
+    private BigDecimal price;
+    private UUID storeId;
 }

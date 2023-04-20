@@ -1,6 +1,6 @@
-package com.teamtwentyfour.fooddeliverysaas.exception;
+package com.gogo.productservice.exception;
 
-import com.teamtwentyfour.fooddeliverysaas.dto.ErrorDto;
+import com.gogo.productservice.dto.ErrorDto;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,18 +1,21 @@
-package com.teamtwentyfour.fooddeliverysaas.service.impl;
+package com.gogo.productservice.service.impl;
 
-import com.teamtwentyfour.fooddeliverysaas.dto.ProductRequest;
-import com.teamtwentyfour.fooddeliverysaas.dto.ProductResponse;
-import com.teamtwentyfour.fooddeliverysaas.exception.ProductNotFoundException;
-import com.teamtwentyfour.fooddeliverysaas.model.Product;
-import com.teamtwentyfour.fooddeliverysaas.repository.ProductRepository;
-import com.teamtwentyfour.fooddeliverysaas.service.ProductServiceImpl;
+import com.gogo.productservice.dto.ProductRequest;
+import com.gogo.productservice.dto.ProductResponse;
+import com.gogo.productservice.dto.ProductUpdate;
+import com.gogo.productservice.exception.ProductNotFoundException;
+import com.gogo.productservice.model.Product;
+import com.gogo.productservice.repository.ProductRepository;
+import com.gogo.productservice.service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -24,9 +27,9 @@ public class ProductService implements ProductServiceImpl {
     public void createProduct(ProductRequest productRequest) {
         Product product = Product.builder()
                 .name(productRequest.getName())
-                .desc(productRequest.getDesc())
+                .description(productRequest.getDescription())
                 .price(productRequest.getPrice())
-                .storeid(productRequest.getStoreid())
+                .storeId(productRequest.getStoreId())
                 .build();
         product.setCreatedAt(LocalDateTime.now());
         productRepository.save(product);
@@ -39,51 +42,52 @@ public class ProductService implements ProductServiceImpl {
     }
 
     @Override
-    public List<ProductResponse> getProduct(String id) {
+    public List<ProductResponse> getProduct(UUID id) {
         final Optional<Product> product = productRepository.findById(id);
 
         return product.stream().map(this::mapToProductResponse).toList();
     }
 
     @Override
-    public void update(ProductRequest newProduct) {
-        final Product product = productRepository.findById(newProduct.getId()).orElseThrow(ProductNotFoundException::new);
-        if(!(newProduct.getName() == null)){
-            product.setName(newProduct.getName());
+    public void update(ProductUpdate productUpdate) {
+        final Product product = productRepository.findById(productUpdate.getId()).orElseThrow(ProductNotFoundException::new);
+        if(!(productUpdate.getName() == null)){
+            product.setName(productUpdate.getName());
         }
-        if(!(newProduct.getDesc() == null)){
-            product.setDesc(newProduct.getDesc());
+        if(!(productUpdate.getDescription() == null)){
+            product.setDescription(productUpdate.getDescription());
         }
-        if(newProduct.getPrice() != 0){
-            product.setPrice(newProduct.getPrice());
+        if(productUpdate.getPrice().compareTo(BigDecimal.ZERO) != 0){
+            product.setPrice(productUpdate.getPrice());
         }
-        if(!(newProduct.getStoreid() == null)){
-            product.setStoreid(newProduct.getStoreid());
+        if(!(productUpdate.getStoreId() == null)){
+            product.setStoreId(productUpdate.getStoreId());
         }
         product.setUpdatedAt(LocalDateTime.now());
         productRepository.save(product);
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(UUID id) {
         productRepository.deleteById(id);
     }
 
     @Override
-    public List<ProductResponse> getProductsByStore(String storeid) {
-        List<Product> products = productRepository.findByStoreid(storeid);
+    public List<ProductResponse> getProductsByStore(UUID storeId) {
+        List<Product> products = productRepository.findByStoreId(storeId);
 
         return products.stream().map(this::mapToProductResponse).toList();
     }
 
 
     private ProductResponse mapToProductResponse(Product product) {
+
         return ProductResponse.builder()
                 .id(product.getId())
                 .name(product.getName())
-                .desc(product.getDesc())
+                .description(product.getDescription())
                 .price(product.getPrice())
-                .storeid(product.getStoreid())
+                .storeId(product.getStoreId())
                 .build();
     }
 
