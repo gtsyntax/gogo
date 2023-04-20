@@ -1,10 +1,11 @@
-package com.teamtwentyfour.fooddeliverysaas.controller;
+package com.gogo.productservice.controller;
 
-import com.teamtwentyfour.fooddeliverysaas.dto.ProductRequest;
-import com.teamtwentyfour.fooddeliverysaas.dto.ProductResponse;
-import com.teamtwentyfour.fooddeliverysaas.model.Product;
-import com.teamtwentyfour.fooddeliverysaas.repository.ProductRepository;
-import com.teamtwentyfour.fooddeliverysaas.service.impl.ProductService;
+import com.gogo.productservice.dto.ProductRequest;
+import com.gogo.productservice.dto.ProductResponse;
+import com.gogo.productservice.dto.ProductUpdate;
+import com.gogo.productservice.model.Product;
+import com.gogo.productservice.repository.ProductRepository;
+import com.gogo.productservice.service.impl.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,13 +14,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
-@RequestMapping("/api/product")
+@RequestMapping("/api/products")
 @RequiredArgsConstructor
 public class ProductController {
 
@@ -56,24 +54,24 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public List<ProductResponse> getProduct(@PathVariable(value = "id") String id){
+    public List<ProductResponse> getProduct(@PathVariable(value = "id") UUID id){
         return productService.getProduct(id);
     }
 
     @PutMapping
-    public void updateProduct(@RequestBody ProductRequest newProduct){
-        productService.update(newProduct);
+    public void updateProduct(@RequestBody ProductUpdate productUpdate){
+        productService.update(productUpdate);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable(value = "id") String id){
+    public void deleteProduct(@PathVariable(value = "id") UUID id){
         productService.delete(id);
     }
 
-    @GetMapping("/store/{storeid}")
+    @GetMapping("/store/{storeId}")
     public ResponseEntity<Map<String, Object>> getProductByStore(@RequestParam(defaultValue = "0") int page,
                                                                  @RequestParam(defaultValue = "15") int size,
-                                                                 @PathVariable(value = "storeid") String storeid){
+                                                                 @PathVariable(value = "storeId") UUID storeId){
         try {
             List<Product> products = new ArrayList<Product>();
             Pageable paging = PageRequest.of(page, size);
@@ -81,7 +79,7 @@ public class ProductController {
             Page<Product> pagePros;
             pagePros = productRepository.findAll(paging);
 
-            List<ProductResponse> productRequest = productService.getProductsByStore(storeid);
+            List<ProductResponse> productRequest = productService.getProductsByStore(storeId);
             Map<String, Object> response = new HashMap<>();
             response.put("products", pagePros.getContent());
             response.put("currentPage", pagePros.getNumber());

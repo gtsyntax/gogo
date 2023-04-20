@@ -1,4 +1,4 @@
-package com.teamtwentyfour.fooddeliverysaas.dto;
+package com.gogo.productservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
