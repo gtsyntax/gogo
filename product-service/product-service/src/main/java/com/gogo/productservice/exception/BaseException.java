@@ -1,4 +1,4 @@
-package com.teamtwentyfour.fooddeliverysaas.exception;
+package com.gogo.productservice.exception;
 
 import lombok.NoArgsConstructor;
 
