@@ -2,6 +2,7 @@ package com.gogo.storeservice.service.impl;
 
 import com.gogo.storeservice.dto.StoreDetail;
 import com.gogo.storeservice.dto.StoreResponse;
+import com.gogo.storeservice.dto.StoreUpdate;
 import com.gogo.storeservice.model.Store;
 import com.gogo.storeservice.repository.StoreRepository;
 import com.gogo.storeservice.service.StoreService;
@@ -42,10 +43,30 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public StoreResponse getStoreById(UUID id) {
+    public StoreResponse getStore(UUID id) {
        Optional<Store> store = storeRepository.findById(id);
        return store.stream().map(this::mapToStoreResponse).findFirst()
                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found"));
+    }
+
+    @Override
+    public void updateStore(UUID id, StoreUpdate storeUpdate) {
+        Optional<Store> optionalStore = storeRepository.findById(id);
+        if (optionalStore.isPresent()) {
+            Store store = optionalStore.get();
+            store.setName(storeUpdate.getName());
+            store.setAddress(storeUpdate.getAddress());
+            store.setCity(storeUpdate.getCity());
+            store.setCountry(storeUpdate.getCountry());
+            store.setZipCode(storeUpdate.getZipCode());
+            store.setUpdatedAt(LocalDateTime.now());
+            storeRepository.save(store);
+        }
+    }
+
+    @Override
+    public void deleteStore(UUID id) {
+        storeRepository.deleteById(id);
     }
 
     private StoreResponse mapToStoreResponse(Store store) {

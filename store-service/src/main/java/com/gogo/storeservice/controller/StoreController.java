@@ -2,6 +2,7 @@ package com.gogo.storeservice.controller;
 
 import com.gogo.storeservice.dto.StoreDetail;
 import com.gogo.storeservice.dto.StoreResponse;
+import com.gogo.storeservice.dto.StoreUpdate;
 import com.gogo.storeservice.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,21 @@ public class StoreController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public StoreResponse getStoreById(@PathVariable("id") UUID id) {
-        return storeService.getStoreById(id);
+    public StoreResponse getStore(@PathVariable("id") UUID id) {
+        return storeService.getStore(id);
     }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateStore(@PathVariable("id") UUID id, @RequestBody StoreUpdate storeUpdate) {
+        storeService.updateStore(id, storeUpdate);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteStore(@PathVariable("id") UUID id) {
+        storeService.deleteStore(id);
+    }
+
+
 }
