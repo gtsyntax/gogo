@@ -21,5 +21,5 @@ public interface ProductServiceImpl {
 
     List<ProductResponse> getProductsByStore(UUID storeId);
 
-
+    void addProductToCart(UUID productId);
 }
