@@ -3,12 +3,14 @@ package com.gogo.productservice.service.impl;
 import com.gogo.productservice.dto.ProductRequest;
 import com.gogo.productservice.dto.ProductResponse;
 import com.gogo.productservice.dto.ProductUpdate;
+import com.gogo.productservice.event.AddToCartEvent;
 import com.gogo.productservice.exception.ProductNotFoundException;
 import com.gogo.productservice.model.Product;
 import com.gogo.productservice.repository.ProductRepository;
 import com.gogo.productservice.service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -23,6 +25,7 @@ import java.util.UUID;
 public class ProductService implements ProductServiceImpl {
 
     private final ProductRepository productRepository;
+    private final KafkaTemplate<String, AddToCartEvent> kafkaTemplate;
 
     public void createProduct(ProductRequest productRequest) {
         Product product = Product.builder()
@@ -77,6 +80,12 @@ public class ProductService implements ProductServiceImpl {
         List<Product> products = productRepository.findByStoreId(storeId);
 
         return products.stream().map(this::mapToProductResponse).toList();
+    }
+
+    @Override
+    public void addProductToCart(UUID productId) {
+        Optional<Product> product = productRepository.findById(productId);
+        product.ifPresent(value -> kafkaTemplate.send("notificationTopic", new AddToCartEvent(value.getId())));
     }
 
 
