@@ -55,7 +55,7 @@ export default function IndexRoute() {
                 <Link to="/restaurants" className="mt-8 mb-8 px-8 py-2 bg-amber-400 rounded-full">View more restaurants</Link>
             </section>
             <section className="container mx-auto flex flex-col items-center justify-center">
-                <h1 className="text-3xl text-center font-bold w-1/2 mt-8 mb-8">Choose your store in Istanbul</h1>
+                <h1 className="text-3xl text-center font-bold w-1/2 mt-8 mb-8">Choose your stores in Istanbul</h1>
                 <StoreList stores={stores} />
                 <Link to="/stores" className="mt-8 mb-8 px-8 py-2 bg-amber-400 rounded-full">View more stores</Link>
             </section>
