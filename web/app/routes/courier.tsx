@@ -1,10 +1,9 @@
 import { Outlet } from "@remix-run/react";
-import SecondaryNav from "~/components/SecondaryNav";
 
-export default function StoresRoute() {
+export default function CourierRoute() {
     return (
         <main>
-            <SecondaryNav />
+            <h1>Courier main</h1>
             <section>
                 <Outlet />
             </section>

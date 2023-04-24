@@ -3,17 +3,16 @@ import { Form, Link } from "@remix-run/react";
 
 export const action: ActionFunction = async ({ request }) => {
     const formData = await request.formData();
-    const email = formData.get("email");
-    const password = formData.get("password");
-    console.log({ email, password });
-    return { ok: true}
+    const partnerData = Object.fromEntries(formData);
+    console.log(partnerData);
+    return {ok: true}
 }
 
 export default function Login() {
     return (
-        <main className="grid h-screen grid-cols-3">
+        <main className="grid h-screen grid-cols-4">
             <div className="col-span-1 bg-amber-400"></div>
-            <div className="col-span-2">
+            <div className="col-span-3">
             <div className="min-h-screen flex justify-center items-center">
                     <div className="container w-1/2">
                         <h1 className="text-4xl font-bold">Login</h1>

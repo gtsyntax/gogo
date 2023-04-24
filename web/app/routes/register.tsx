@@ -3,21 +3,16 @@ import { Form, Link } from "@remix-run/react";
 
 export const action: ActionFunction = async ({ request }) => {
     const formData = await request.formData();
-    const firstName = formData.get("firstName");
-    const lastName = formData.get("lastName");
-    const email = formData.get("email");
-    const phone = formData.get("phone");
-    const password = formData.get("password");
-
-    console.log({firstName, lastName, email, phone, password});
-    return { ok : true }
+    const partnerData = Object.fromEntries(formData);
+    console.log(partnerData);
+    return {ok: true}
 }
 
 export default function Register() {
     return (
-        <main className="grid h-screen grid-cols-3">
+        <main className="grid h-screen grid-cols-4">
             <div className="col-span-1 bg-amber-400"></div>
-            <div className="col-span-2">
+            <div className="col-span-3">
                 <div className="min-h-screen flex justify-center items-center">
                     <div className="container w-1/2">
                         <h1 className="text-4xl font-bold">Register</h1>
@@ -37,6 +32,12 @@ export default function Register() {
                                     className="border border-gray-300 py-1 px-2"
                                 />
                             </div>
+                            <input 
+                                    type="text" 
+                                    name="address" 
+                                    placeholder="Address" 
+                                    className="border border-gray-300 py-1 px-2 w-full mt-2"
+                            />
                             <input 
                                     type="email" 
                                     name="email" 
