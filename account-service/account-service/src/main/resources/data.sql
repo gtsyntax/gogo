@@ -1,0 +1,6 @@
+--insert into users
+--values ('4cf19c66-e035-11ed-b5ea-0242ac120002', '2023-04-21 13:57:20.072861' ,'albe@gmail.com', '$2a$10$LSgqc5xr8onIDzxS/PrqYebukg/6QN8WgD.KQgbXFKt2Y0ba1oDau', '2023-04-21 13:57:20.072861', 'albe');
+--insert into users
+--values ('4cf19fb8-e035-11ed-b5ea-0242ac120002', '2023-04-21 13:57:20.072861' ,'mango@gmail.com', '$2a$10$zyLna4TNXM1/Ut6Ypuwa7.hRQo2DRGzR/vEuyMpigXOLDUeCBocA.', '2023-04-21 13:57:20.072861', 'mango');
+--insert into users
+--values ('4cf1a184-e035-11ed-b5ea-0242ac120002', '2023-04-21 13:57:20.072861' ,'deda@gmail.com', '$2a$10$GMNEOA/hygEv8e0GFpNLluN6N107nFyQYFPNS9OlHzm010nrZMsDu', '2023-04-21 13:57:20.072861', 'deda');
