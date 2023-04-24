@@ -64,7 +64,7 @@ export default function RestaurantRoute() {
                     <div>
                         <h2 className="text-2xl font-bold">Popular Items</h2>
                         <p className="text-gray-600">The most commonly ordered items and dishes from this store</p>
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-2 gap-4 mt-4 mb-4">
                             {menuItems.map((menu, key) => (
                                 <RestaurantMenu menu={menu} key={key} />
                             ))}
