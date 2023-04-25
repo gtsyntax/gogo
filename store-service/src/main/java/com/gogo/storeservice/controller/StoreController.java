@@ -47,5 +47,10 @@ public class StoreController {
         storeService.deleteStore(id);
     }
 
+    @PostMapping("/items/{id}/add")
+    public void addProductToCart(@PathVariable("id") UUID id) {
+        storeService.addProductToCart(id);
+    }
+
 
 }

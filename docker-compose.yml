@@ -1,5 +1,25 @@
 version: '3'
 services:
+  account-service:
+    build: ./account-service
+    ports:
+      - "8084:8084"
+  
+  product-service:
+    build: ./product-service
+    ports:
+      - "8088:8088"
+  
+  restaurant-service:
+    build: ./restaurant-service 
+    ports:
+      - "8081:8081"
+  
+  store-service:
+    build: ./store-service
+    ports:
+      - "8089:8089"
+      
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.2
     container_name: zookeeper

@@ -6,7 +6,6 @@ import com.gogo.storeservice.dto.StoreResponse;
 import com.gogo.storeservice.dto.StoreUpdate;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface StoreService {
@@ -19,5 +18,7 @@ public interface StoreService {
     void updateStore(UUID id, StoreUpdate storeUpdate);
 
     void deleteStore(UUID id);
+
+    void addProductToCart(UUID id);
 
 }
