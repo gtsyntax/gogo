@@ -1,4 +1,4 @@
-import 'package:chat_app/chat_page.dart';
+import 'package:chat_app/home_page.dart';
 import 'package:chat_app/services/auth_service.dart';
 import 'package:chat_app/utils/spaces.dart';
 import 'package:chat_app/utils/textfield_styles.dart';
@@ -36,6 +36,131 @@ class LoginPage extends StatelessWidget {
 
   final _mainUrl = "https://tony.com";
 
+  Widget _buildHeader(context){
+    return Column(
+      children: [
+        Text(
+          'Let\'s sign you in!',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 30,
+              color:Colors.black,
+              fontWeight: FontWeight.bold, letterSpacing: 0.5
+          ),
+        ),
+        Text(
+          'Welcome back! \n You\'ve been missed!',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize:20,
+              color: Colors.blueGrey
+          ),
+        ),
+        Image.asset(
+          'assets/food.jpeg',
+          height: 200,),
+      ],
+    );
+  }
+
+  Widget _buildFooter(){
+      return Column(
+        children: [
+          InkWell(
+            splashColor: Colors.red,
+            onDoubleTap: (){
+              print('double tapped!');
+            },
+            onLongPress: (){
+              print('long pressed!');
+            },
+            onTap: () async{
+              print('Link clicked!');
+              if (!await launch(_mainUrl)){
+                throw 'Could not launch this!';
+              }
+            },
+            child: Column(
+              children: [
+                Text('Find us on'),
+                Text(_mainUrl),
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+
+              SocialMediaButton.twitter(
+                  size: 20,
+                  color: Colors.blue,
+                  url: "https://twitter.com/"
+              ),
+              SocialMediaButton.instagram(
+                  size: 20,
+                  color: Colors.purple,
+                  url: "https://instagram.com/"
+              ),
+              SocialMediaButton.facebook(
+                  size: 20,
+                  color: Colors.blue,
+                  url: "https://facebook.com"
+              ),
+
+            ],
+          )
+        ],
+      );
+  }
+
+  Widget _buildForm(context){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Form(
+          key: _formkey,
+          child: Column(
+            children: [
+              LoginTextField(
+                hintText: "Enter your username",
+                validator: (value){
+                  if(value!=null && value.isNotEmpty && value.length<5){
+                    return "Your username should be more than 5 characters!";
+                  } else if(value!=null && value.isEmpty){
+                    return "Please type your username";
+                  }
+                  return null;
+                },
+                controller: userNameController,
+
+
+              ),
+              verticalSpacing(24),
+              LoginTextField(
+                hintText: "Enter your password",
+                hasAsterisks: true,
+                controller: passwordController,
+
+
+              ),
+            ],
+          ),
+        ),
+        verticalSpacing(24),
+        ElevatedButton(
+            onPressed:()async{
+              await loginUser(context);
+            }, //null
+            child: Text(
+              'Login',
+              style: TextStyle(fontSize: 30,fontWeight: FontWeight.w300),
+            )),
+      ],
+    );
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,113 +170,38 @@ class LoginPage extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                'Let\'s sign you in!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 30,
-                    color:Colors.black,
-                    fontWeight: FontWeight.bold, letterSpacing: 0.5
-                ),
-              ),
-              Text(
-                'Welcome back! \n You\'ve been missed!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize:20,
-                    color: Colors.blueGrey
-                ),
-              ),
-              Image.asset(
-                'assets/food.jpeg',
-                height: 200,),
-              Form(
-                key: _formkey,
-                child: Column(
+          child: LayoutBuilder(
+            builder: (context, BoxConstraints constraints) {
+              if(constraints.maxWidth>1000){
+                //web layout
+                return Row(
                   children: [
-                    LoginTextField(
-                      hintText: "Enter your username",
-                      validator: (value){
-                        if(value!=null && value.isNotEmpty && value.length<5){
-                          return "Your username should be more than 5 characters!";
-                        } else if(value!=null && value.isEmpty){
-                          return "Please type your username";
-                        }
-                        return null;
-                      },
-                      controller: userNameController,
-
-
-                    ),
-                    verticalSpacing(24),
-                    LoginTextField(
-                      hintText: "Enter your password",
-                      hasAsterisks: true,
-                      controller: passwordController,
-
-
+                    Spacer(flex: 1,),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _buildHeader(context),
+                          _buildFooter(),
+                        ],
                       ),
+                    ),
+                    Spacer(flex: 1,),
+                    Expanded(child: _buildForm(context)),
+                    Spacer(flex: 1,),
                   ],
-                ),
-              ),
-              verticalSpacing(24),
-              ElevatedButton(
-                  onPressed:()async{
-                   await loginUser(context);
-                  }, //null
-                  child: Text(
-                      'Login',
-                    style: TextStyle(fontSize: 30,fontWeight: FontWeight.w300),
-                  )),
-              InkWell(
-                splashColor: Colors.red,
-                onDoubleTap: (){
-                  print('double tapped!');
-                },
-                onLongPress: (){
-                  print('long pressed!');
-                },
-                onTap: () async{
-                  print('Link clicked!');
-                    if (!await launch(_mainUrl)){
-                    throw 'Could not launch this!';
-                  }
-                },
-                child: Column(
-                  children: [
-                    Text('Find us on'),
-                    Text(_mainUrl),
-                  ],
-                ),
-              ),
-              Row(
+                );
+              }
+              return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-
-                  SocialMediaButton.twitter(
-                    size: 20,
-                    color: Colors.blue,
-                    url: "https://twitter.com/"
-                  ),
-                  SocialMediaButton.instagram(
-                      size: 20,
-                      color: Colors.purple,
-                      url: "https://instagram.com/"
-                  ),
-                  SocialMediaButton.facebook(
-                    size: 20,
-                      color: Colors.blue,
-                      url: "https://facebook.com"
-                  ),
-
+                  _buildHeader(context),
+                  _buildForm(context),
+                  _buildFooter(),
                 ],
-              )
-            ],
+              );
+            }
           ),
         ),
       ),
