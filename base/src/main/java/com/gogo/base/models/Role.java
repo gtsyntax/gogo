@@ -1,6 +1,6 @@
 package com.gogo.base.models;
 
-import com.gogo.base.enumarations.RoleType;
+import com.gogo.base.enumerations.RoleType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

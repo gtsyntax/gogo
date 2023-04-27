@@ -1,4 +1,4 @@
-package com.gogo.base.enumarations;
+package com.gogo.base.enumerations;
 
 public enum ShopType {
     RESTAURANT,

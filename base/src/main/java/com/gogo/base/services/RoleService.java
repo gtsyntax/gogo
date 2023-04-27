@@ -1,6 +1,6 @@
 package com.gogo.base.services;
 
-import com.gogo.base.enumarations.RoleType;
+import com.gogo.base.enumerations.RoleType;
 import com.gogo.base.exceptions.NotFoundException;
 import com.gogo.base.models.Role;
 import com.gogo.base.repository.RoleRepository;

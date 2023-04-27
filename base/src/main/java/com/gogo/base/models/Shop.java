@@ -1,7 +1,7 @@
 package com.gogo.base.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.gogo.base.enumarations.ShopType;
+import com.gogo.base.enumerations.ShopType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
