@@ -1,7 +1,7 @@
 package com.gogo.base.services;
 
 import com.gogo.base.dto.NewUserRequest;
-import com.gogo.base.enumarations.RoleType;
+import com.gogo.base.enumerations.RoleType;
 import com.gogo.base.exceptions.AlreadyExistException;
 import com.gogo.base.exceptions.NotFoundException;
 import com.gogo.base.mapper.UserMapper;

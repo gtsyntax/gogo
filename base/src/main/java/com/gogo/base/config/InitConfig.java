@@ -2,7 +2,7 @@ package com.gogo.base.config;
 
 
 import com.gogo.base.dto.NewUserRequest;
-import com.gogo.base.enumarations.RoleType;
+import com.gogo.base.enumerations.RoleType;
 import com.gogo.base.exceptions.NotFoundException;
 import com.gogo.base.models.Role;
 import com.gogo.base.models.User;
