@@ -18,28 +18,24 @@ public class CartService {
     private final CartRepository cartRepository;
     private final UserService userService;
 
-    public void createCart(String username){
-        log.info("------creating the cart");
+    public void createCart(String username) {
         Cart cart = new Cart(userService.getByUsername(username));
         cartRepository.save(cart);
-        log.info("------cart clone created");
-        //orderService.createOrder(cart.getId());
-        log.info("------cart created");
     }
 
-    public Cart getCart(UUID id){
+    public Cart getCart(UUID id) {
         return cartRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
-    public List<Cart> getCartsByUserId(UUID userId){
+    public List<Cart> getCartsByUserId(UUID userId) {
         return cartRepository.findByUser(userService.getById(userId));
     }
 
-    public List<Cart> getCartsByStatusAndUserId(CartStatus status, UUID userId){
+    public List<Cart> getCartsByStatusAndUserId(CartStatus status, UUID userId) {
         return cartRepository.findByStatusAndUser(status, userService.getById(userId));
     }
 
-    public void setStatus(UUID cartId, CartStatus status){
+    public void setStatus(UUID cartId, CartStatus status) {
         final Cart cart = this.getCart(cartId);
         cart.setStatus(status);
         cartRepository.save(cart);

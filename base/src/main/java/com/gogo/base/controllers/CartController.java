@@ -1,13 +1,10 @@
 package com.gogo.base.controllers;
 
-import com.gogo.base.dto.ProductResponse;
 import com.gogo.base.enumerations.CartStatus;
 import com.gogo.base.models.Cart;
-import com.gogo.base.models.Product;
 import com.gogo.base.repository.CartRepository;
 import com.gogo.base.services.CartService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,9 +12,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
-@Slf4j
 @RestController
 @RequestMapping("/cart")
 @RequiredArgsConstructor
@@ -27,10 +25,8 @@ public class CartController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createCart(@RequestBody String username){
-        log.info("----cart controller start");
-        cartService.createCart(username);
-        log.info("----cart controller done");
+    public void createCart(@RequestBody Map<String, String> json) {
+        cartService.createCart(json.get("username"));
     }
 
     @GetMapping
@@ -55,13 +51,13 @@ public class CartController {
     }
 
     @GetMapping("/{id}")
-    public Cart getCart(@PathVariable(value = "id") UUID id){
+    public Cart getCart(@PathVariable(value = "id") UUID id) {
         return cartService.getCart(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void cancelCart(@PathVariable(value = "id") UUID id){
+    public void cancelCart(@PathVariable(value = "id") UUID id) {
         cartService.setStatus(id, CartStatus.CANCELLED);
         //TODO payment will be returned
     }

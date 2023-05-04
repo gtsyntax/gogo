@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -21,8 +22,8 @@ public class UserController {
 
 
     @GetMapping
-    public User getUser(@RequestBody String username) {
-        return userService.getByUsername(username);
+    public User getUser(@RequestBody Map<String, String> json) {
+        return userService.getByUsername(json.get("username"));
     }
 
 
