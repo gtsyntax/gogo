@@ -34,9 +34,8 @@ public class Payment {
     @Column(name = "status", nullable = false)
     private PaymentStatus status;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Order order;
+    @OneToOne(mappedBy = "payment")
+    private Cart cart;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)

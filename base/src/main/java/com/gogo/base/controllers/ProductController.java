@@ -34,13 +34,13 @@ public class ProductController {
                                                               @RequestParam(defaultValue = "15") int size) {
 
         try {
-            List<Product> products = new ArrayList<Product>();
+            List<Product> products = new ArrayList<Product>(); //TODO delete
             Pageable paging = PageRequest.of(page, size);
 
             Page<Product> pageTuts;
             pageTuts = productRepository.findAll(paging);
 
-            List<ProductResponse> productRequest = productService.getAllProducts();
+            List<ProductResponse> productResponses = productService.getAllProducts(); //TODO delete
             Map<String, Object> response = new HashMap<>();
             response.put("products", pageTuts.getContent());
             response.put("currentPage", pageTuts.getNumber());
@@ -53,7 +53,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public List<ProductResponse> getProduct(@PathVariable(value = "id") UUID id){
+    public Product getProduct(@PathVariable(value = "id") UUID id){
         return productService.getProduct(id);
     }
 

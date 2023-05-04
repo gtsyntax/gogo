@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -46,8 +47,12 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public User findByUsername(String username) {
+    public User getByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(NotFoundException::new);
+    }
+
+    public List<User> getAll() {
+        return userRepository.findAll();
     }
 
     @Transactional //Annotation will create a hibernate session with a certain scope
@@ -65,5 +70,9 @@ public class UserService {
 
         userRepository.save(user);
         return Boolean.TRUE;
+    }
+
+    public User getById(UUID id){
+        return userRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 }
