@@ -7,7 +7,6 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Set;
 import java.util.UUID;
@@ -35,7 +34,7 @@ public class Order {
     @JsonIgnore
     private Set<OrderItem> orderItems;
 
-    @OneToOne(mappedBy = "order")
+    @OneToOne(mappedBy = "order", fetch = FetchType.LAZY)
     @JsonIgnore
     private Cart cart;
 
