@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -24,15 +25,24 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
 
     @ManyToOne
+    @JoinColumn(name="user_id", nullable = false)
     private User user;
 
+    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private CartStatus status;
+
+    @Column(name = "total_price", precision = 10, scale = 2, nullable = false)
+    private BigDecimal totalPrice;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "payment_id", referencedColumnName = "id")
+    private Payment payment;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)
@@ -47,6 +57,7 @@ public class Cart {
     public Cart(User user) {
         this.user = user;
         this.status = CartStatus.NEW;
+        this.totalPrice = BigDecimal.ZERO;
     }
 
 }

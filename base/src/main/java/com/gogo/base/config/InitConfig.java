@@ -9,6 +9,7 @@ import com.gogo.base.models.User;
 import com.gogo.base.services.RoleService;
 import com.gogo.base.services.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,7 +35,7 @@ public class InitConfig {
             });
 
             try {
-                final User adminUser = userService.findByUsername("sys.admin");
+                final User adminUser = userService.getByUsername("sys.admin");
 
             } catch (NotFoundException e) {
                 NewUserRequest adminUser = new NewUserRequest();

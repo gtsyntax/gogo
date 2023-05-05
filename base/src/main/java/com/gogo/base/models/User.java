@@ -1,10 +1,12 @@
 package com.gogo.base.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -27,10 +29,14 @@ public class User {
     private String email;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Cart> cart;
 
     @Column
     private LocalDateTime createdAt;
