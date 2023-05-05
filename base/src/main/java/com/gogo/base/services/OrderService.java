@@ -20,14 +20,11 @@ public class OrderService {
     private final CartService cartService;
 
     public void createOrder(UUID cartId) {
-        log.info("------creating order");
         Order order = new Order();
         order.setCart(cartService.getCart(cartId));
         order.setStatus(OrderStatus.NEW);
 
-        log.info("------order clone created");
         orderRepository.save(order);
-        log.info("------order is saved");
     }
 
     public Order getOrder(UUID id) {

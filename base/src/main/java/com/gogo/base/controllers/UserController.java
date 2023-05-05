@@ -21,7 +21,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
 
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAllUsers(@RequestParam(defaultValue = "0") int page,
