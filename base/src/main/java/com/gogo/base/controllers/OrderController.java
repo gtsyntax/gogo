@@ -4,10 +4,10 @@ import com.gogo.base.models.Order;
 import com.gogo.base.repository.OrderRepository;
 import com.gogo.base.services.OrderService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -16,6 +16,12 @@ import java.util.UUID;
 public class OrderController {
     private final OrderService orderService;
     private final OrderRepository orderRepository;
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createOrder(@RequestBody Map<String, UUID> json){
+        orderService.createOrder(json.get("cart_id"));
+    }
 
     @GetMapping("/{id}")
     public Order getOrder(UUID id) {

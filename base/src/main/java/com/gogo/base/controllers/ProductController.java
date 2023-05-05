@@ -34,13 +34,11 @@ public class ProductController {
                                                               @RequestParam(defaultValue = "15") int size) {
 
         try {
-            List<Product> products = new ArrayList<Product>(); //TODO delete
             Pageable paging = PageRequest.of(page, size);
 
             Page<Product> pageTuts;
             pageTuts = productRepository.findAll(paging);
 
-            List<ProductResponse> productResponses = productService.getAllProducts(); //TODO delete
             Map<String, Object> response = new HashMap<>();
             response.put("products", pageTuts.getContent());
             response.put("currentPage", pageTuts.getNumber());
