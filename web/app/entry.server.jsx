@@ -1,11 +1,11 @@
 /**
  * By default, Remix will handle generating the HTTP Response for you.
  * You are free to delete this file if you'd like to, but if you ever want it revealed again, you can run `npx remix reveal` ✨
- * For more information, see https://remix.run/docs/en/main/file-conventions/entry.server
+ * For more information, see https://remix.run/file-conventions/entry.server
  */
 
 import { PassThrough } from "node:stream";
-import type { EntryContext } from "@remix-run/node";
+
 import { Response } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import isbot from "isbot";
@@ -14,10 +14,10 @@ import { renderToPipeableStream } from "react-dom/server";
 const ABORT_DELAY = 5_000;
 
 export default function handleRequest(
-  request: Request,
-  responseStatusCode: number,
-  responseHeaders: Headers,
-  remixContext: EntryContext
+  request,
+  responseStatusCode,
+  responseHeaders,
+  remixContext
 ) {
   return isbot(request.headers.get("user-agent"))
     ? handleBotRequest(
@@ -35,10 +35,10 @@ export default function handleRequest(
 }
 
 function handleBotRequest(
-  request: Request,
-  responseStatusCode: number,
-  responseHeaders: Headers,
-  remixContext: EntryContext
+  request,
+  responseStatusCode,
+  responseHeaders,
+  remixContext
 ) {
   return new Promise((resolve, reject) => {
     const { pipe, abort } = renderToPipeableStream(
@@ -47,6 +47,7 @@ function handleBotRequest(
         url={request.url}
         abortDelay={ABORT_DELAY}
       />,
+
       {
         onAllReady() {
           const body = new PassThrough();
@@ -62,10 +63,10 @@ function handleBotRequest(
 
           pipe(body);
         },
-        onShellError(error: unknown) {
+        onShellError(error) {
           reject(error);
         },
-        onError(error: unknown) {
+        onError(error) {
           responseStatusCode = 500;
           console.error(error);
         },
@@ -77,10 +78,10 @@ function handleBotRequest(
 }
 
 function handleBrowserRequest(
-  request: Request,
-  responseStatusCode: number,
-  responseHeaders: Headers,
-  remixContext: EntryContext
+  request,
+  responseStatusCode,
+  responseHeaders,
+  remixContext
 ) {
   return new Promise((resolve, reject) => {
     const { pipe, abort } = renderToPipeableStream(
@@ -89,6 +90,7 @@ function handleBrowserRequest(
         url={request.url}
         abortDelay={ABORT_DELAY}
       />,
+
       {
         onShellReady() {
           const body = new PassThrough();
@@ -104,10 +106,10 @@ function handleBrowserRequest(
 
           pipe(body);
         },
-        onShellError(error: unknown) {
+        onShellError(error) {
           reject(error);
         },
-        onError(error: unknown) {
+        onError(error) {
           console.error(error);
           responseStatusCode = 500;
         },
