@@ -19,7 +19,6 @@ import java.util.UUID;
 public class CartService {
     private final CartRepository cartRepository;
     private final UserService userService;
-    private final UserRepository userRepository;
 
     public void createCart(String username) {
         User user = userService.getByUsername(username);

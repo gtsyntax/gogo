@@ -4,7 +4,6 @@ import com.gogo.base.enumerations.OrderStatus;
 import com.gogo.base.exceptions.NotFoundException;
 import com.gogo.base.models.Address;
 import com.gogo.base.models.Order;
-import com.gogo.base.models.OrderItem;
 import com.gogo.base.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +20,6 @@ public class OrderService {
 
     public void createOrder(UUID cartId) {
         Order order = new Order();
-        order.setCart(cartService.getCart(cartId));
         order.setStatus(OrderStatus.NEW);
 
         orderRepository.save(order);
@@ -47,10 +45,5 @@ public class OrderService {
         orderRepository.save(order);
     }
 
-    public void addOrderItem(OrderItem orderItem) {
-        final Order order = this.getOrder(orderItem.getOrder().getId());
-        order.getOrderItems().add(orderItem);
-        orderRepository.save(order);
-    }
 
 }

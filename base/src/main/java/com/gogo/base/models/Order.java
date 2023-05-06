@@ -30,13 +30,8 @@ public class Order {
     @Embedded
     private Address deliveryAddress;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
-    @JsonIgnore
-    private Set<OrderItem> orderItems;
-
-    @OneToOne(mappedBy = "order", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private Cart cart;
+    @Column(name = "cart_id", nullable = false)
+    private UUID cartId;
 
     private String note;
 

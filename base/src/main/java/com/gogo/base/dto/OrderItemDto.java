@@ -14,5 +14,5 @@ import java.util.UUID;
 public class OrderItemDto {
     private int quantity;
     private UUID productId;
-    private UUID orderId;
+    private UUID cartId;
 }

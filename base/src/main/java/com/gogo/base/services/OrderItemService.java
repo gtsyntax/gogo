@@ -13,21 +13,18 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class OrderItemService {
 
-    private final ProductService productService;
-    private final OrderService orderService;
     private final OrderItemRepository orderItemRepository;
 
     public void createOrderItem(OrderItemDto orderItemDto) {
         OrderItem orderItem = OrderItem.builder()
                 .quantity(orderItemDto.getQuantity())
                 .productId(orderItemDto.getProductId())
-                .order(orderService.getOrder(orderItemDto.getOrderId()))
+                .cartId(orderItemDto.getCartId())
                 .build();
         orderItemRepository.save(orderItem);
-        orderService.addOrderItem(orderItem);
     }
 
-    public OrderItem getOrderItem(UUID id){
+    public OrderItem getOrderItem(UUID id) {
         return orderItemRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 

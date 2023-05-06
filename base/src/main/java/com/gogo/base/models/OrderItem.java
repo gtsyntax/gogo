@@ -24,11 +24,11 @@ public class OrderItem {
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
+    @Column(name = "product_id", nullable = false)
     private UUID productId;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", nullable = false)
-    private Order order;
+    @Column(name = "cart_id", nullable = false)
+    private UUID cartId;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)
