@@ -3,13 +3,14 @@ package com.gogo.base.services;
 import com.gogo.base.enumerations.CartStatus;
 import com.gogo.base.exceptions.NotFoundException;
 import com.gogo.base.models.Cart;
+import com.gogo.base.models.OrderItem;
 import com.gogo.base.models.User;
 import com.gogo.base.repository.CartRepository;
-import com.gogo.base.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -41,6 +42,16 @@ public class CartService {
     public void setStatus(UUID cartId, CartStatus status) {
         final Cart cart = this.getCart(cartId);
         cart.setStatus(status);
+        cartRepository.save(cart);
+    }
+
+    public void updateTotalPrice(UUID cart_id, List<OrderItem> orderItems) {
+        Cart cart = this.getCart(cart_id);
+        BigDecimal totalPrice = BigDecimal.ZERO;
+        for (OrderItem orderItem : orderItems) {
+            totalPrice = totalPrice.add(orderItem.getPrice());
+        }
+        cart.setTotalPrice(totalPrice);
         cartRepository.save(cart);
     }
 

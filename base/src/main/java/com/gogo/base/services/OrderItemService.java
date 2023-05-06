@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -16,6 +17,7 @@ public class OrderItemService {
 
     private final OrderItemRepository orderItemRepository;
     private final ProductService productService;
+    private final CartService cartService;
 
     public void createOrderItem(OrderItemDto orderItemDto) {
         OrderItem orderItem = OrderItem.builder()
@@ -25,6 +27,7 @@ public class OrderItemService {
                 .price((productService.getProduct(orderItemDto.getProductId()).getPrice()).multiply(BigDecimal.valueOf(orderItemDto.getQuantity())))
                 .build();
         orderItemRepository.save(orderItem);
+        cartService.updateTotalPrice(orderItem.getCartId(), this.getOrderItemByCart(orderItem.getCartId()));
     }
 
     public OrderItem getOrderItem(UUID id) {
@@ -40,6 +43,11 @@ public class OrderItemService {
         orderItem.setQuantity(newQuantity);
         orderItem.setPrice((productService.getProduct(orderItem.getProductId()).getPrice()).multiply(BigDecimal.valueOf(newQuantity)));
         orderItemRepository.save(orderItem);
+        cartService.updateTotalPrice(orderItem.getCartId(), this.getOrderItemByCart(orderItem.getCartId()));
+    }
+
+    public List<OrderItem> getOrderItemByCart(UUID cartId) {
+        return orderItemRepository.findByCartId(cartId);
     }
 
 }
