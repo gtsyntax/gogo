@@ -5,23 +5,18 @@ import com.gogo.base.repository.OrderRepository;
 import com.gogo.base.services.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/Order")
+@RequestMapping("/order")
 @RequiredArgsConstructor
 public class OrderController {
     private final OrderService orderService;
     private final OrderRepository orderRepository;
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createOrder(@RequestBody Map<String, UUID> json){
-        orderService.createOrder(json.get("cart_id"));
-    }
 
     @GetMapping("/{id}")
     public Order getOrder(UUID id) {
@@ -29,7 +24,7 @@ public class OrderController {
     }
 
 
-    //TODO
+    //TODO must add courier before this
     /*
     @GetMapping
     public ResponseEntity<Map<String, Object>> getMyDelivery(@RequestParam(defaultValue = "0") int page,
@@ -54,4 +49,13 @@ public class OrderController {
     }
     */
 
+    @PutMapping("/status")
+    public ResponseEntity setStatus(@RequestBody Map<String, String> json){
+        Boolean status_verifier = orderService.setStatus(UUID.fromString(json.get("order_id")), json.get("status"), json.get("note"));
+        if(status_verifier){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>("This status update is illegal.", HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
 }

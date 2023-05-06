@@ -20,6 +20,7 @@ import java.util.UUID;
 public class CartService {
     private final CartRepository cartRepository;
     private final UserService userService;
+    private final OrderService orderService;
 
     public void createCart(String username) {
         User user = userService.getByUsername(username);
@@ -43,6 +44,11 @@ public class CartService {
         final Cart cart = this.getCart(cartId);
         cart.setStatus(status);
         cartRepository.save(cart);
+        switch (status){
+            case CONFIRMED:
+                orderService.createOrder(cartId);
+                break;
+        }
     }
 
     public void updateTotalPrice(UUID cart_id, List<OrderItem> orderItems) {
