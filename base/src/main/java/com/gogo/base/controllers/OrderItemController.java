@@ -1,10 +1,8 @@
 package com.gogo.base.controllers;
 
 import com.gogo.base.dto.OrderItemDto;
-import com.gogo.base.models.Cart;
 import com.gogo.base.models.OrderItem;
 import com.gogo.base.repository.OrderItemRepository;
-import com.gogo.base.repository.OrderRepository;
 import com.gogo.base.services.OrderItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,7 +17,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/OrderItem")
+@RequestMapping("/order_item")
 @RequiredArgsConstructor
 public class OrderItemController {
     private final OrderItemService orderItemService;
@@ -27,7 +25,7 @@ public class OrderItemController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createOrderItem(@RequestBody OrderItemDto orderItemDto){
+    public void createOrderItem(@RequestBody OrderItemDto orderItemDto) {
         orderItemService.createOrderItem(orderItemDto);
     }
 
@@ -53,7 +51,20 @@ public class OrderItemController {
     }
 
     @GetMapping("/{id}")
-    public OrderItem getOrderItem(@PathVariable(value = "id") UUID id){
+    public OrderItem getOrderItem(@PathVariable(value = "id") UUID id) {
         return orderItemService.getOrderItem(id);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteOrderItem(@PathVariable(value = "id") UUID orderItemId) {
+        orderItemService.delete(orderItemId);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateQuantity(@RequestBody Map<String, String> json) {
+        orderItemService.updateQuantity(UUID.fromString(json.get("order_item_id")), Integer.parseInt(json.get("quantity")));
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.gogo.base.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +14,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class OrderItemDto {
     private int quantity;
+    @JsonProperty("product_id")
     private UUID productId;
+    @JsonProperty("cart_id")
     private UUID cartId;
 }

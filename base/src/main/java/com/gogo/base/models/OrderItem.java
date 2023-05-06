@@ -6,6 +6,7 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -21,6 +22,9 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
+
     @Column(name = "quantity", nullable = false)
     private int quantity;
 
@@ -31,7 +35,7 @@ public class OrderItem {
     private UUID cartId;
 
     @CreatedDate
-    @Column(name = "created_date", nullable = false)
+    @Column(name = "created_date")
     @JsonIgnore
     private Instant createdDate = Instant.now();
 
