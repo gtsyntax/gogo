@@ -25,13 +25,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
-    private Order order;
-
-    @ManyToOne
-    @JoinColumn(name="user_id", nullable = false)
-    private User user;
+    private UUID userId;
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -54,8 +48,8 @@ public class Cart {
     @JsonIgnore
     private Instant lastModifiedDate = Instant.now();
 
-    public Cart(User user) {
-        this.user = user;
+    public Cart(UUID userId) {
+        this.userId = userId;
         this.status = CartStatus.NEW;
         this.totalPrice = BigDecimal.ZERO;
     }
