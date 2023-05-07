@@ -36,7 +36,7 @@ public class Order {
     private String note;
 
     @CreatedDate
-    @Column(name = "created_date", nullable = false)
+    @Column(name = "created_date")
     @JsonIgnore
     private Instant createdDate = Instant.now();
 

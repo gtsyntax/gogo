@@ -3,13 +3,11 @@ package com.gogo.base.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gogo.base.enumerations.PaymentStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -19,26 +17,31 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "payment")
+@Builder
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "payment_provider")
+    @JsonIgnore
     private String paymentProvider;
 
     @Column(name = "payment_provider_id")
+    @JsonIgnore
     private String paymentProviderId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private PaymentStatus status;
 
-    @OneToOne(mappedBy = "payment")
-    private Cart cart;
+    @JsonIgnore
+    private UUID cartId;
+
+    private BigDecimal price;
 
     @CreatedDate
-    @Column(name = "created_date", nullable = false)
+    @Column(name = "created_date")
     @JsonIgnore
     private Instant createdDate = Instant.now();
 

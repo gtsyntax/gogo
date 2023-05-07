@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -65,6 +66,11 @@ public class OrderItemController {
     @ResponseStatus(HttpStatus.OK)
     public void updateQuantity(@RequestBody Map<String, String> json) {
         orderItemService.updateQuantity(UUID.fromString(json.get("order_item_id")), Integer.parseInt(json.get("quantity")));
+    }
+
+    @GetMapping("/by_cart/{id}")
+    public List<OrderItem> getByCartId(@PathVariable(value = "id") UUID cartId){
+        return orderItemService.getOrderItemByCart(cartId);
     }
 
 }

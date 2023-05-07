@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -61,4 +62,15 @@ public class CartController {
         cartService.setStatus(id, CartStatus.CANCELLED);
         //TODO payment will be returned
     }
+
+    @GetMapping("/by_user/{user_id}")
+    public List<Cart> getCartByUserId(@PathVariable(name = "user_id") UUID userId) {
+        return cartService.getCartsByUserId(userId);
+    }
+
+    @GetMapping("/by_status")
+    public List<Cart> getCartByStatusAndUserId(@RequestBody Map<String, String> json) {
+        return cartService.getCartsByStatusAndUserId(CartStatus.valueOf(json.get("status")), UUID.fromString(json.get("user_id")));
+    }
+
 }

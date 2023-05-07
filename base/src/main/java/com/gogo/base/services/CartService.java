@@ -3,13 +3,14 @@ package com.gogo.base.services;
 import com.gogo.base.enumerations.CartStatus;
 import com.gogo.base.exceptions.NotFoundException;
 import com.gogo.base.models.Cart;
+import com.gogo.base.models.OrderItem;
 import com.gogo.base.models.User;
 import com.gogo.base.repository.CartRepository;
-import com.gogo.base.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,6 +20,7 @@ import java.util.UUID;
 public class CartService {
     private final CartRepository cartRepository;
     private final UserService userService;
+    private final OrderService orderService;
 
     public void createCart(String username) {
         User user = userService.getByUsername(username);
@@ -42,7 +44,27 @@ public class CartService {
         final Cart cart = this.getCart(cartId);
         cart.setStatus(status);
         cartRepository.save(cart);
+        switch (status) {
+            case CONFIRMED:
+                orderService.createOrder(cartId);
+                break;
+        }
+    }
+
+    public void updateTotalPrice(UUID cart_id, List<OrderItem> orderItems) {
+        Cart cart = this.getCart(cart_id);
+        BigDecimal totalPrice = BigDecimal.ZERO;
+        for (OrderItem orderItem : orderItems) {
+            totalPrice = totalPrice.add(orderItem.getPrice());
+        }
+        cart.setTotalPrice(totalPrice);
+        cartRepository.save(cart);
     }
 
 
+    public void setPayment(UUID cartId, UUID paymentId) {
+        Cart cart = this.getCart(cartId);
+        cart.setPayment(paymentId);
+        cartRepository.save(cart);
+    }
 }
