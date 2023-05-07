@@ -44,7 +44,7 @@ public class CartService {
         final Cart cart = this.getCart(cartId);
         cart.setStatus(status);
         cartRepository.save(cart);
-        switch (status){
+        switch (status) {
             case CONFIRMED:
                 orderService.createOrder(cartId);
                 break;
@@ -62,4 +62,9 @@ public class CartService {
     }
 
 
+    public void setPayment(UUID cartId, UUID paymentId) {
+        Cart cart = this.getCart(cartId);
+        cart.setPayment(paymentId);
+        cartRepository.save(cart);
+    }
 }

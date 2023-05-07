@@ -34,9 +34,7 @@ public class Cart {
     @Column(name = "total_price", precision = 10, scale = 2, nullable = false)
     private BigDecimal totalPrice;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "payment_id", referencedColumnName = "id")
-    private Payment payment;
+    private UUID payment;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)

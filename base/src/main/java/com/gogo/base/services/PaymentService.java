@@ -6,21 +6,21 @@ import com.gogo.base.enumerations.PaymentStatus;
 import com.gogo.base.models.Payment;
 import com.gogo.base.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
-@Slf4j
+
 @Service
 @RequiredArgsConstructor
 public class PaymentService {
     public final PaymentRepository paymentRepository;
     public final CartService cartService;
 
-    public void create(PaymentDto paymentDto){
-        log.info("------hello");
+    public boolean create(PaymentDto paymentDto) {
+        if (cartService.getCart(paymentDto.getCartId()).getStatus() == CartStatus.CONFIRMED) {
+            return false;
+        }
         Payment payment = Payment.builder()
                 .cartId(paymentDto.getCartId())
                 .paymentProvider(paymentDto.getPaymentProvider())
@@ -30,18 +30,17 @@ public class PaymentService {
                 // This can be changed later to implement a better payment system.
                 .status(PaymentStatus.ACCEPTED)
                 .build();
-        log.info("-------payment clone created");
         paymentRepository.save(payment);
-        log.info("--------payment is saved");
         cartService.setStatus(paymentDto.getCartId(), CartStatus.CONFIRMED);
-        log.info("---------cart updated");
+        cartService.setPayment(paymentDto.getCartId(), payment.getId());
+        return true;
     }
 
-    public Payment getPaymentByCartId(UUID cartId){
+    public Payment getPaymentByCartId(UUID cartId) {
         return paymentRepository.findByCartId(cartId);
     }
 
-    public PaymentStatus getStatus(UUID cartId){
+    public PaymentStatus getStatus(UUID cartId) {
         Payment payment = this.getPaymentByCartId(cartId);
         return payment.getStatus();
     }
