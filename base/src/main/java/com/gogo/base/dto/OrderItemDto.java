@@ -16,6 +16,6 @@ public class OrderItemDto {
     private int quantity;
     @JsonProperty("product_id")
     private UUID productId;
-    @JsonProperty("cart_id")
-    private UUID cartId;
+    @JsonProperty("user_id")
+    private UUID userId;
 }

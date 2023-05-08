@@ -1,13 +1,16 @@
 package com.gogo.base.services;
 
 import com.gogo.base.dto.OrderItemDto;
+import com.gogo.base.enumerations.CartStatus;
 import com.gogo.base.exceptions.NotFoundException;
 import com.gogo.base.models.OrderItem;
+import com.gogo.base.models.Product;
 import com.gogo.base.repository.OrderItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +26,7 @@ public class OrderItemService {
         OrderItem orderItem = OrderItem.builder()
                 .quantity(orderItemDto.getQuantity())
                 .productId(orderItemDto.getProductId())
-                .cartId(orderItemDto.getCartId())
+                .cartId(cartService.getCartsByStatusAndUserId(CartStatus.NEW, orderItemDto.getUserId()).stream().findFirst().get().getId())
                 .price((productService.getProduct(orderItemDto.getProductId()).getPrice()).multiply(BigDecimal.valueOf(orderItemDto.getQuantity())))
                 .build();
         orderItemRepository.save(orderItem);
@@ -50,4 +53,10 @@ public class OrderItemService {
         return orderItemRepository.findByCartId(cartId);
     }
 
+    public List<Product> getProductsByCartId(UUID cartId) {
+        List<UUID> productIds = orderItemRepository.findProductIdByCartId(cartId);
+        List<Product> products = new ArrayList<>();
+        productIds.forEach(productId -> products.add(productService.getProduct(productId)));
+        return products;
+    }
 }

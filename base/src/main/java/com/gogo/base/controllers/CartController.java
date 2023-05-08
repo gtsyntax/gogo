@@ -57,10 +57,13 @@ public class CartController {
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void cancelCart(@PathVariable(value = "id") UUID id) {
-        cartService.setStatus(id, CartStatus.CANCELLED);
-        //TODO payment will be returned
+    public ResponseEntity cancelCart(@PathVariable(value = "id") UUID id) {
+        boolean verifier = cartService.setStatus(id, CartStatus.CANCELLED);
+        if (verifier) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Once CONFIRMED cart cannot be CANCELLED.", HttpStatus.NOT_ACCEPTABLE);
+        }
     }
 
     @GetMapping("/by_user/{user_id}")

@@ -14,8 +14,10 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class PaymentService {
-    public final PaymentRepository paymentRepository;
-    public final CartService cartService;
+    private final PaymentRepository paymentRepository;
+    private final CartService cartService;
+    private final OrderService orderService;
+    private final OrderItemService orderItemService;
 
     public boolean create(PaymentDto paymentDto) {
         if (cartService.getCart(paymentDto.getCartId()).getStatus() == CartStatus.CONFIRMED) {
@@ -33,6 +35,7 @@ public class PaymentService {
         paymentRepository.save(payment);
         cartService.setStatus(paymentDto.getCartId(), CartStatus.CONFIRMED);
         cartService.setPayment(paymentDto.getCartId(), payment.getId());
+        orderService.createOrder(paymentDto.getCartId(), orderItemService.getOrderItemByCart(paymentDto.getCartId()));
         return true;
     }
 

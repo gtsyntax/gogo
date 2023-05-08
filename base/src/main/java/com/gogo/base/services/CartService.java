@@ -20,7 +20,6 @@ import java.util.UUID;
 public class CartService {
     private final CartRepository cartRepository;
     private final UserService userService;
-    private final OrderService orderService;
 
     public void createCart(String username) {
         User user = userService.getByUsername(username);
@@ -40,15 +39,17 @@ public class CartService {
         return cartRepository.findByStatusAndUserId(status, userId);
     }
 
-    public void setStatus(UUID cartId, CartStatus status) {
+    public boolean setStatus(UUID cartId, CartStatus status) {
         final Cart cart = this.getCart(cartId);
+        if (cart.getStatus() == CartStatus.CANCELLED) {
+            return true;
+        }
+        if (cart.getStatus() == CartStatus.CONFIRMED && status == CartStatus.CANCELLED) {
+            return false;
+        }
         cart.setStatus(status);
         cartRepository.save(cart);
-        switch (status) {
-            case CONFIRMED:
-                orderService.createOrder(cartId);
-                break;
-        }
+        return true;
     }
 
     public void updateTotalPrice(UUID cart_id, List<OrderItem> orderItems) {
