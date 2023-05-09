@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/shops")
+@RequestMapping("/api/shops")
 @RequiredArgsConstructor
 public class ShopController {
     private final ShopService shopService;
