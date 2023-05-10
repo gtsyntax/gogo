@@ -14,7 +14,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/FoodDB
     username: postgres
-    password: pass123
+    password: postgres
     initialization-mode: always
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
