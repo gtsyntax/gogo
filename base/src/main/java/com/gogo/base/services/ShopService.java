@@ -3,6 +3,7 @@ package com.gogo.base.services;
 import com.gogo.base.dto.ShopResponse;
 import com.gogo.base.dto.ShopUpdate;
 import com.gogo.base.dto.ShopDetail;
+import com.gogo.base.exceptions.NotFoundException;
 import com.gogo.base.models.Shop;
 import com.gogo.base.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
@@ -43,19 +44,25 @@ public class ShopService {
     public ShopResponse getStore(UUID id) {
         Optional<Shop> store = shopRepository.findById(id);
         return store.stream().map(this::mapToShopResponse).findFirst()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found"));
+                .orElseThrow(NotFoundException::new);
     }
 
     public void updateStore(UUID id, ShopUpdate storeUpdate) {
         Optional<Shop> optionalStore = shopRepository.findById(id);
         if (optionalStore.isPresent()) {
             Shop store = optionalStore.get();
-            store.setName(storeUpdate.getName());
-            store.setAddress(storeUpdate.getAddress());
-            store.setCity(storeUpdate.getCity());
-            store.setCountry(storeUpdate.getCountry());
-            store.setCountry(storeUpdate.getCountry());
-            store.setZipCode(storeUpdate.getZipCode());
+            if (storeUpdate.getName() != null)
+                store.setName(storeUpdate.getName());
+            if (storeUpdate.getAddress() != null)
+                store.setAddress(storeUpdate.getAddress());
+            if (storeUpdate.getCity() != null)
+                store.setCity(storeUpdate.getCity());
+            if (storeUpdate.getCountry() != null)
+                store.setCountry(storeUpdate.getCountry());
+            if (storeUpdate.getCountry() != null)
+                store.setCountry(storeUpdate.getCountry());
+            if (storeUpdate.getZipCode() != null)
+                store.setZipCode(storeUpdate.getZipCode());
             store.setUpdatedAt(LocalDateTime.now());
             shopRepository.save(store);
         }
@@ -63,10 +70,6 @@ public class ShopService {
 
     public void deleteShop(UUID id) {
         shopRepository.deleteById(id);
-    }
-
-    public void addProductToCart(UUID id) {
-        log.info("Received product with id {}", id);
     }
 
     private ShopResponse mapToShopResponse(Shop shop) {
