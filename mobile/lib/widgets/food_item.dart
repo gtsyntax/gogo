@@ -1,4 +1,4 @@
-import 'package:chat_app/utils/colors.dart';
+import '../utils/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../models/food.dart';

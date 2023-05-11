@@ -1,42 +1,27 @@
+import '../utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
 
-  final IconData leftIcon;
-  final IconData rightIcon;
-  final Function? leftCallback;
+  final IconData icon;
+  final double size;
 
-  CustomAppBar(this.leftIcon,this.rightIcon,{this.leftCallback});
+  const CustomAppBar({Key? key,required this.icon,this.size=40}):super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(
-        top: MediaQuery.of(context).padding.top,
-        left: 25,
-        right: 25,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-            GestureDetector(
-              onTap: leftCallback!=null?() => leftCallback!(): null,
-              child: _buildIcon(leftIcon),
-            ),
-          _buildIcon(rightIcon),
-        ],
-          ),
-    );
-  }
-
-  Widget _buildIcon(IconData icon) {
-    return Container(
-      padding: EdgeInsets.all(8),
+        width: size,
+      height: size,
       decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.white,
+        borderRadius: BorderRadius.circular(size/2),
+        color: background,
       ),
-      child: Icon(icon),
+      child: Icon(
+        icon,
+        color: Colors.black,
+        size: 20,
+      ),
     );
   }
 }

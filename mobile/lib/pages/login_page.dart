@@ -1,8 +1,9 @@
-import 'package:chat_app/home_page.dart';
-import 'package:chat_app/services/auth_service.dart';
-import 'package:chat_app/utils/spaces.dart';
-import 'package:chat_app/utils/textfield_styles.dart';
-import 'package:chat_app/widgets/login_text_field.dart';
+import '../pages/home_page.dart';
+import '../services/auth_service.dart';
+import '../utils/colors.dart';
+import '../utils/spaces.dart';
+import '../utils/textfield_styles.dart';
+import '../widgets/login_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -20,7 +21,7 @@ class LoginPage extends StatelessWidget {
       print(passwordController.text);
 
       await context.read<AuthService>().loginUser(userNameController.text);
-      Navigator.pushReplacementNamed(context, '/chat',
+      Navigator.pushReplacementNamed(context, '/home',
           arguments: '${userNameController.text}');
 
       print('login successful!');
@@ -34,7 +35,7 @@ class LoginPage extends StatelessWidget {
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  final _mainUrl = "https://tony.com";
+  final _mainUrl = "https://gogo.com";
 
   Widget _buildHeader(context){
     return Column(
@@ -46,15 +47,6 @@ class LoginPage extends StatelessWidget {
               fontSize: 30,
               color:Colors.black,
               fontWeight: FontWeight.bold, letterSpacing: 0.5
-          ),
-        ),
-        Text(
-          'Welcome back! \n You\'ve been missed!',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize:20,
-              color: Colors.blueGrey
           ),
         ),
         Image.asset(
@@ -83,8 +75,16 @@ class LoginPage extends StatelessWidget {
             },
             child: Column(
               children: [
-                Text('Find us on'),
-                Text(_mainUrl),
+                Text('Find us on:',style: TextStyle(
+                  fontSize: 20,
+                ),),
+                SizedBox(height: 5,),
+                Text(_mainUrl,style: TextStyle(
+                  fontSize: 20,
+                    decoration: TextDecoration.underline,
+                    color: Colors.blue,
+                ),),
+                SizedBox(height: 10,),
               ],
             ),
           ),
@@ -93,17 +93,17 @@ class LoginPage extends StatelessWidget {
             children: [
 
               SocialMediaButton.twitter(
-                  size: 20,
+                  size: 25,
                   color: Colors.blue,
                   url: "https://twitter.com/"
               ),
               SocialMediaButton.instagram(
-                  size: 20,
+                  size: 25,
                   color: Colors.purple,
                   url: "https://instagram.com/"
               ),
               SocialMediaButton.facebook(
-                  size: 20,
+                  size: 25,
                   color: Colors.blue,
                   url: "https://facebook.com"
               ),
@@ -149,15 +149,19 @@ class LoginPage extends StatelessWidget {
           ),
         ),
         verticalSpacing(24),
-        ElevatedButton(
+        MaterialButton(
+          color: primaryColor,
             onPressed:()async{
               await loginUser(context);
             }, //null
             child: Text(
-              'Login',
-              style: TextStyle(fontSize: 30,fontWeight: FontWeight.w300),
+              'Sign In',
+              style: TextStyle( fontSize: 20,),
+
             )),
+        verticalSpacing(24),
       ],
+
     );
 
   }
@@ -165,8 +169,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
+      resizeToAvoidBottomInset:false,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),

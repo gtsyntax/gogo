@@ -1,4 +1,4 @@
-import 'package:chat_app/models/food.dart';
+import '../models/food.dart';
 
 class Restaurant{
   String name;
@@ -13,7 +13,7 @@ class Restaurant{
       this.waitTime,this.distance,this.label,this.logoUrl,this.desc,this.score,
       this.menu);
   static Restaurant generateRestaurant(){
-    return Restaurant("Restaurant", "30-40min", "2.5km", "Restaurant", "assets/food.jpeg",
+    return Restaurant("Durumcu Tony Usta", "30-40 min", "2.5 km", "Restaurant", "assets/food.jpeg",
         "Baba dürüm is best", 4.9, {
       'Recommend':Food.generateRecommendFoods(),
           'Popular':Food.generatePopularFoods(),

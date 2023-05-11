@@ -1,5 +1,5 @@
-import 'package:chat_app/models/entity.dart';
-import 'package:chat_app/services/auth_service.dart';
+import '../models/entity.dart';
+import '../services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

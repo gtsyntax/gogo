@@ -1,4 +1,4 @@
-import 'package:chat_app/utils/colors.dart';
+import '../utils/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../models/restaurant.dart';
@@ -29,13 +29,14 @@ final restaurant= Restaurant.generateRestaurant();
                       Container(
                         padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.4),
+                            color: Colors.amber,
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Text(
                             restaurant.waitTime,
                           style: TextStyle(
                             color: Colors.white,
+                            fontSize: 17,
                           ),
                           )
                       ),
@@ -43,18 +44,18 @@ final restaurant= Restaurant.generateRestaurant();
                       Text(
                           restaurant.distance,
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey.withOpacity(0.4),
+                          //color: Colors.amber,
                         ),
                       ),
                       SizedBox(width: 10),
                       Text(
                           restaurant.label,
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 17,
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey.withOpacity(0.4),
+                          //color: Colors.amber,
                         ),
                       ),
                     ],
