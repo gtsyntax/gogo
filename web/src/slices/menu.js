@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, nanoid } from "@reduxjs/toolkit"
 import menus from "../util/menus.json"
 
 const initialState = {
@@ -7,8 +7,20 @@ const initialState = {
 }
 
 const menuSlice = createSlice({
-    name: "menus",
+    name: "menu",
     initialState,
+    reducers: {
+        createMenu: {
+            reducer: (state, action) => {
+                state.menuList.push(action.payload)
+            },
+            prepare: ({title, description, price, quantity}) => {
+                const uuid = nanoid()
+                return { payload: {uuid, title, description, price, quantity}}
+            }
+        }
+    }
 })
 
+export const { createMenu } = menuSlice.actions;
 export default menuSlice.reducer

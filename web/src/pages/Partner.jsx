@@ -18,8 +18,8 @@ export default function Partner() {
     ]
 
     return (
-        <main className="flex">
-            <div className={`flex flex-col justify-between items-center bg-brand-primary h-screen p-5 pt-8 duration-200 ${open ? "w-72" : "w-20"}`}>
+        <main className="grid grid-cols-12 min-h-screen min-w-full">
+            <div className={`flex flex-col justify-between items-center bg-brand-primary h-screen p-5 pt-8 duration-200 ${open ? "col-span-2" : "col-span-1"}`}>
                 <div className="flex flex-col items-center">
                     <BsFillArrowLeftCircleFill 
                         className={`text-brand-white text-3xl cursor-pointer ${!open && "rotate-180"}`}
@@ -43,7 +43,9 @@ export default function Partner() {
                     <p className={`font-medium text-base flex-1 duration-200 ${!open && "hidden"}`}>Logout</p>
                 </div>
             </div>
-            <div className="p-8"><Outlet /></div>
+            <div className={`${open ? "col-span-10" : "col-span-11"}`}>
+                <Outlet />
+            </div>
         </main>
     )
 }
