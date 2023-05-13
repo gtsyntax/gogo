@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
-import Partner from './pages/partner'
+import Partner from './pages/Partner'
 import PartnerDashboard from './pages/partner/Dashboard'
 import PartnerInbox from './pages/partner/Inbox'
 import PartnerOrders from './pages/partner/Orders'
