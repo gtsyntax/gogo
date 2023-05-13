@@ -7,9 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        "brand-primary": "#4c3398",
-        "brand-secondary": "#7849f7",
-        "brand-yellow": "#ffd300",
+        "brand-primary": "#0AAD0A",
+        "brand-secondary": "#0AAD0A",
+        "brand-accent": "#FAF1E5",
+        "brand-black": "#070707",
+        "brand-white": "#FFFFFF",
       }
     },
   },

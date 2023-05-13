@@ -22,13 +22,13 @@ export default function Partner() {
             <div className={`flex flex-col justify-between items-center bg-brand-primary h-screen p-5 pt-8 duration-200 ${open ? "w-72" : "w-20"}`}>
                 <div className="flex flex-col items-center">
                     <BsFillArrowLeftCircleFill 
-                        className={`text-white text-3xl cursor-pointer ${!open && "rotate-180"}`}
+                        className={`text-brand-white text-3xl cursor-pointer ${!open && "rotate-180"}`}
                         onClick={() => setOpen(!open)}
                     />
                     <ul className="mt-4">
                         {Menus.map((menu, key) => (
                             <NavLink to={menu.route} key={key}>
-                                <li className="flex items-center space-x-4 text-gray-300 cursor-pointer text-md hover:bg-brand-secondary p-4 rounded-md">
+                                <li className="flex items-center space-x-4 text-brand-white cursor-pointer text-md hover:bg-brand-secondary p-4 rounded-md">
                                     <span>
                                         {menu.icon}
                                     </span>
@@ -38,7 +38,7 @@ export default function Partner() {
                         ))}
                     </ul>
                 </div>
-                <div className="flex items-center space-x-4 text-gray-300 cursor-pointer text-md hover:bg-brand-secondary p-4 rounded-md">
+                <div className="flex items-center space-x-4 text-brand-white cursor-pointer text-md hover:bg-brand-secondary p-4 rounded-md">
                     <RxEnter size={20}/>
                     <p className={`font-medium text-base flex-1 duration-200 ${!open && "hidden"}`}>Logout</p>
                 </div>

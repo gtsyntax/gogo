@@ -18,12 +18,17 @@ import CustomerSettings from './pages/customer/Settings'
 import CategoryDetail from "./pages/CategoryDetail"
 import NotFound from './pages/NotFound'
 import StoreFront from './pages/StoreFront'
+import PartnerLogin from './pages/partner/Login'
+import PartnerRegister from './pages/partner/Register'
+import RestaurantList from './pages/RestaurantList'
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='partner/login' element={<PartnerLogin />} />
+        <Route path='partner/register' element={<PartnerRegister />} />
         <Route path='partner' element={<Partner />}>
           <Route index element={<PartnerDashboard />} />
           <Route path='inbox' element={<PartnerInbox />} />
@@ -42,7 +47,8 @@ export default function App() {
           <Route path='settings' element={<CustomerSettings />} />
         </Route>
         <Route path='/:id' element={<CategoryDetail />} />
-        <Route path='/storefront/:id' element={<StoreFront />} />
+        <Route path='/r/all' element={<RestaurantList />} />
+        <Route path='/r/:id' element={<StoreFront />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>

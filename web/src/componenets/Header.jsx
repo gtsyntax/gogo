@@ -79,17 +79,17 @@ export default function Header() {
     }
 
     return (
-        <main className="bg-brand-primary">
-            <div className="container mx-auto h-11 flex items-center justify-between">
-                <Link to="/" className="font-bold text-brand-yellow">gogo</Link>
+        <main className="bg-brand-white">
+            <div className="container mx-auto h-14 flex items-center justify-between">
+                <Link to="/" className="font-bold text-brand-black transition-all text-opacity-80 hover:text-opacity-100">GOGO</Link>
                 <nav className="flex gap-x-8">
-                    <Link to="#" className="flex gap-x-2 text-white text-sm font-semibold transition-all text-opacity-80 hover:text-opacity-100">
+                    <Link to="#" className="flex gap-x-2 text-brand-black text-sm font-semibold transition-all text-opacity-80 hover:text-opacity-100">
                         <CiGlobe size={20}/>
                         English (EN)
                     </Link>
                     <Link 
                         to="#" 
-                        className="flex gap-x-2 text-white text-sm font-semibold transition-all text-opacity-80 hover:text-opacity-100"
+                        className="flex gap-x-2 text-brand-black text-sm font-semibold transition-all text-opacity-80 hover:text-opacity-100"
                         onClick={() => setShowLoginModal(true)}
                     >
                         <HiUser size={20}/>
@@ -97,7 +97,7 @@ export default function Header() {
                     </Link>
                     <Link 
                         to="#" 
-                        className="flex gap-x-2 text-white text-sm font-semibold transition-all text-opacity-80 hover:text-opacity-100"
+                        className="flex gap-x-2 text-black text-sm font-semibold transition-all text-opacity-80 hover:text-opacity-100"
                         onClick={() => setShowRegisterModal(true)}
                     >
                         <HiUserAdd size={20}/>

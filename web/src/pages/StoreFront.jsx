@@ -29,8 +29,8 @@ export default function StoreFront() {
             <section>
                 <div className="container mx-auto">
                     <div>
-                        <div className="border">
-                            <img src="https://placehold.co/600x400?text=Shop+Image" />
+                        <div className="border h-[400px]">
+                            <img className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" />
                         </div>
                         <div className="p-4">
                             <h1 className="font-bold text-3xl">Panera</h1>
@@ -41,7 +41,7 @@ export default function StoreFront() {
                     <div className="border p-4 grid grid-cols-3 gap-8">
                         {productList.map((product, index) => (
                             <div key={index} className="shadow grid grid-cols-2 rounded-md p-4 space-x-4">
-                                <img src={`https://placehold.co/600x400?text=Food+Image`} />
+                                <img className="h-32 w-full" src={`https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Zm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60https://placehold.co/600x400?text=Food+Image`} />
                                 <div className="flex flex-col justify-evenly">
                                     <p className="text-sm">{product.name}</p>
                                     <div className="flex border rounded-lg justify-evenly items-center py-2">
