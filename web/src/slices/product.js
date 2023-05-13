@@ -16,7 +16,9 @@ const productSlice = createSlice({
         },
         decreaseQty: (state, action) => {
             const productItem = state.productList.find((product) => product.uuid === action.payload.uuid)
-            productItem.qty = productItem.qty - 1
+            if (productItem.qty > 0) {
+                productItem.qty = productItem.qty - 1
+            }
         }
     }
 })
