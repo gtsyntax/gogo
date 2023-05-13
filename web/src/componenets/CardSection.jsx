@@ -11,7 +11,7 @@ export default function CardSection() {
 
             <div>
                 <img src="https://placehold.co/400x200/png" />
-                <h1 className="text-2xl font-bold mt-2">Your restaurant, delivered</h1>
+                <h1 className="text-2xl font-bold mt-2">Become a Partner</h1>
                 <Link to="/partner/register">Add your restaurant</Link>
             </div>
 

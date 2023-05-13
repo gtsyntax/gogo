@@ -47,8 +47,8 @@ export default function App() {
           <Route path='settings' element={<CustomerSettings />} />
         </Route>
         <Route path='/:id' element={<CategoryDetail />} />
-        <Route path='/r/all' element={<RestaurantList />} />
-        <Route path='/r/:id' element={<StoreFront />} />
+        <Route path='/restaurants-near-me' element={<RestaurantList />} />
+        <Route path='/store/:id' element={<StoreFront />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
