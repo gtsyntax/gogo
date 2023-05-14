@@ -3,6 +3,7 @@ import menus from "../util/menus.json"
 
 const initialState = {
     menuList: [...menus],
+    restaurantMenuList: [],
     isLoading: true
 }
 
@@ -12,7 +13,7 @@ const menuSlice = createSlice({
     reducers: {
         createMenu: {
             reducer: (state, action) => {
-                state.menuList.push(action.payload)
+                state.restaurantMenuList.push(action.payload)
             },
             prepare: ({title, description, price, quantity}) => {
                 const uuid = nanoid()
