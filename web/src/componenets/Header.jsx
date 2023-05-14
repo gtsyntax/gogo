@@ -30,36 +30,6 @@ export default function Header() {
         dispatch(clearMessage())
     }, [dispatch])
 
-    // const handleLogin = (formValue) => {
-    //     const { username, password } = formValue
-    //     setLoading(true)
-
-    //     dispatch(login({ username, password}))
-    //         .unwrap()
-    //         .then(() => {
-    //             navigate("/customer")
-    //             window.location.reload()
-    //         })
-    //         .catch(() => {
-    //             setLoading(false)
-    //         })
-    // }
-    
-    // const handleRegister = (formValue) => {
-    //     const { username, email, password } = formValue 
-
-    //     setSuccessful(false);
-
-    //     dispatch(register({ username, email, password}))
-    //         .unwrap()
-    //         .then(() => {
-    //             setSuccessful(true)
-    //         })
-    //         .catch(() => {
-    //             setSuccessful(false)
-    //         })
-    // }
-
     if (isLoggedIn) {
         return <Navigate to="/customer" />
     }
