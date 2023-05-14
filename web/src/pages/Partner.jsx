@@ -15,11 +15,12 @@ export default function Partner() {
         {title: "Reviews", icon: <RxStar size={20}/>, route: "/partner/reviews"},
         {title: "Analytics", icon: <RiBarChartLine size={20}/>, route: "/partner/analytics"},
         {title: "Settings", icon: <RxPerson size={20}/>, route: "/partner/settings"},
+        {title: "Logout", icon: <RxEnter size={20}/>}
     ]
 
     return (
         <main className="grid grid-cols-12 min-h-screen min-w-full">
-            <div className={`flex flex-col justify-between items-center bg-brand-primary h-screen p-5 pt-8 duration-200 ${open ? "col-span-2" : "col-span-1"}`}>
+            <div className={`min-h-full flex flex-col justify-between items-center bg-brand-primary h-screen p-5 pt-8 duration-200 ${open ? "col-span-2" : "col-span-1"}`}>
                 <div className="flex flex-col items-center">
                     <BsFillArrowLeftCircleFill 
                         className={`text-brand-white text-3xl cursor-pointer ${!open && "rotate-180"}`}
@@ -37,10 +38,6 @@ export default function Partner() {
                             </NavLink>
                         ))}
                     </ul>
-                </div>
-                <div className="flex items-center space-x-4 text-brand-white cursor-pointer text-md hover:bg-brand-secondary p-4 rounded-md">
-                    <RxEnter size={20}/>
-                    <p className={`font-medium text-base flex-1 duration-200 ${!open && "hidden"}`}>Logout</p>
                 </div>
             </div>
             <div className={`${open ? "col-span-10" : "col-span-11"}`}>

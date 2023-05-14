@@ -1,15 +1,25 @@
 import { useSelector, useDispatch } from "react-redux"
 import { createMenu } from "../../slices/menu"
-import { Formik, Form, useField } from "formik"
+import { Formik, Form } from "formik"
+import { TextInput } from "../../componenets/FormikUI"
 import * as Yup from "yup"
 
 export default function PartnerMenus() {
-    const menu = useSelector((state) => state.menu)
+    const {restaurantMenuList} = useSelector((state) => state.menu)
     const dispatch = useDispatch()
 
     return (
         <main className="min-h-screen p-8 grid grid-cols-2 gap-x-8">
-            <div className="border">left</div>
+            <div className="border p-8 space-y-4">
+                {restaurantMenuList.map((item) => (
+                    <div className="border rounded p-4">
+                        <p>{item.title}</p>
+                        <p>{item.description}</p>
+                        <p>{item.price}</p>
+                        <p>{item.quantity}</p>
+                    </div>
+                ))}
+            </div>
             <div className="border p-8">
                 <Formik
                     initialValues = {{title: "", description: ""}}
@@ -37,15 +47,3 @@ export default function PartnerMenus() {
     )
 }
 
-function TextInput({label, ...props}) {
-    const [field, meta] = useField(props);
-    return (
-        <div className="flex flex-col">
-            <label htmlFor={props.id || props.name}>{label}</label>
-            <input className="border p-2" {...field} {...props} />
-            {meta.touched && meta.error ? (
-                <div className="text-red-400">{meta.error}</div>
-            ) : null}
-        </div>
-    )
-}
