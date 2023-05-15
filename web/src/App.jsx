@@ -10,6 +10,7 @@ import PartnerAnalytics from './pages/partner/Analytics'
 import PartnerSettings from './pages/partner/Settings'
 import Customer from './pages/Customer'
 import CustomerHome from './pages/customer/Home'
+import CustomerCart from './pages/Customer/Cart'
 import CustomerAddress from './pages/customer/Address'
 import CustomerFavorites from './pages/customer/Favorites'
 import CustomerOrders from './pages/customer/Orders'
@@ -21,8 +22,18 @@ import StoreFront from './pages/StoreFront'
 import PartnerLogin from './pages/partner/Login'
 import PartnerRegister from './pages/partner/Register'
 import RestaurantList from './pages/RestaurantList'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { updateTotal } from './slices/cart'
 
 export default function App() {
+  const { cartItems } = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(updateTotal())
+  }, [cartItems, dispatch])
+
   return (
     <BrowserRouter>
       <Routes>
@@ -40,6 +51,7 @@ export default function App() {
         </Route>
         <Route path='customer' element={<Customer />}>
           <Route index element={<CustomerHome />} />
+          <Route path='cart' element={<CustomerCart />} />
           <Route path='address' element={<CustomerAddress />} />
           <Route path='favorites' element={<CustomerFavorites />} />
           <Route path='orders' element={<CustomerOrders />} />

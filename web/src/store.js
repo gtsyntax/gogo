@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit"
 import authReducer from "./slices/auth"
+import addressReducer from "./slices/address"
 import cartReducer from "./slices/cart"
 import restaurantReducer from "./slices/restaurants"
 import orderReducer from "./slices/order"
@@ -8,6 +9,7 @@ import messageReducer from "./slices/message"
 
 const reducer = {
     auth: authReducer,
+    address: addressReducer,
     cart: cartReducer,
     restaurant: restaurantReducer,
     order: orderReducer,
