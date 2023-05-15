@@ -18,10 +18,10 @@ export default function PartnerLogin() {
                         console.log(values)
                     }}
                 >
-                    <Form className="flex flex-col space-y-2 mt-4 mb-4">
+                    <Form className="flex flex-col space-y-4 mt-4 mb-4">
                         <TextInput label="Email address" name="email" type="email" />
                         <TextInput label="Password" name="password" type="password" />
-                        <button type="submit" className="bg-brand-primary text-brand-white h-12 hover:text-brand-yellow hover:bg-brand-secondary transition-colors">Sign In</button>
+                        <button type="submit" className="bg-brand-black text-white rounded-full p-4">Get Started</button>
                     </Form>
                 </Formik>
                 <p className="text-black">Don't have an account? <Link to="/partner/register" className="hover:text-brand-primary">Sign Up</Link></p>

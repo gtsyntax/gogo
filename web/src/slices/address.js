@@ -21,6 +21,7 @@ const addressSlice = createSlice({
         },
         removeAddress: (state, {payload}) => {
             state.addressList = state.addressList.filter(address => address.id !== payload.id)
+            state.totalAddress--
         }
     }
 })

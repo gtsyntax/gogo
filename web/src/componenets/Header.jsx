@@ -30,9 +30,9 @@ export default function Header() {
         dispatch(clearMessage())
     }, [dispatch])
 
-    if (isLoggedIn) {
-        return <Navigate to="/customer" />
-    }
+    // if (isLoggedIn) {
+    //     return <Navigate to="/customer" />
+    // }
 
     return (
         <main className="bg-brand-white">
@@ -78,10 +78,10 @@ export default function Header() {
                             })
                     }}
                 >
-                    <Form className="space-y-4">
+                    <Form className="flex flex-col space-y-4">
                         <TextInput label="Username" name="username" type="text"/>
                         <TextInput label="Password" name="password" type="password"/>
-                        <button type="submit" className="bg-brand-primary text-brand-white py-2 px-4">Sign In</button>
+                        <button type="submit" className="bg-brand-black text-brand-white py-4 px-8 rounded-full">Sign In</button>
                     </Form>
                 </Formik>
             </Modal>
@@ -105,11 +105,11 @@ export default function Header() {
                             })
                     }}
                 >
-                    <Form className="space-y-4">
+                    <Form className="flex flex-col space-y-4">
                         <TextInput label="Username" name="username" type="text"/>
                         <TextInput label="Email" name="email" type="email"/>
                         <TextInput label="Password" name="password" type="password"/>
-                        <button type="submit" className="bg-brand-primary text-brand-white py-2 px-4">Sign Up</button>
+                        <button type="submit" className="bg-brand-black text-brand-white py-4 px-8 rounded-full">Sign Up</button>
                     </Form>
                 </Formik>
             </Modal>

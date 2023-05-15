@@ -33,13 +33,13 @@ export default function PartnerMenus() {
                         dispatch(createMenu(values))
                     }}
                 >
-                    <Form className="space-y-4">
+                    <Form className="flex flex-col space-y-4">
                         <TextInput label="Menu Title" name="title" type="text"/>
                         <TextInput label="Menu Description" name="description" type="text"/>
                         <TextInput label="Menu Price" name="price" type="number" />
                         <TextInput label="Menu Quantity" name="quantity" type="number" />
 
-                        <button type="submit" className="bg-brand-primary text-brand-white py-2 px-4">Create Menu</button>
+                        <button type="submit" className="bg-brand-black text-brand-white rounded-full py-4 px-8">Create Menu</button>
                     </Form>
                 </Formik>
             </div>

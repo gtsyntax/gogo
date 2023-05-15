@@ -12,12 +12,12 @@ export default function CustomerCart(){
 
     return (
         <main className="p-8">
-            <h1 className="mb-4 text-2xl">Cart</h1>
+            <h1 className="mb-4 text-2xl font-semibold">Cart</h1>
             <hr/>
             <section className="grid grid-cols-4 gap-8 divide-x">
                 {quantity === 0 ? (
                     <div className="col-span-3 flex justify-center items-center text-xl">
-                        <p>Your cart is empty</p>
+                        <p className="text-lg font-semibold">Your cart is empty</p>
                     </div>
                 ) 
                 : (
@@ -25,8 +25,8 @@ export default function CustomerCart(){
                         {cartItems.map((item, index) => (
                             <div className="flex justify-between items-center" key={item.itemId}>
                                 <div>
-                                    <p>{item.itemName}</p>
-                                    <p>&#8378;{item.price}</p>
+                                    <p className="text-lg font-semibold">{item.itemName}</p>
+                                    <p className="text-gray-500">&#8378;{item.price}</p>
                                     <button className="text-red-400" onClick={() => dispatch(removeItem(item))}>Remove</button>
                                 </div>
                                 <div className="flex items-center w-32 justify-between">
@@ -48,9 +48,9 @@ export default function CustomerCart(){
                 )}
 
                 <div className="col-span-1 flex flex-col gap-y-2 p-4">
-                    <p>Address:</p>
-                    <p>Total: &#8378;{total.toFixed(2)}</p>
-                    <button className="bg-brand-primary text-brand-white p-2" onClick={() => setCheckoutModal(true)}>Checkout</button>
+                    <p className="text-lg">Address:</p>
+                    <p className="text-lg">Total: <span className="font-semibold">&#8378;{total.toFixed(2)}</span></p>
+                    <button className="bg-brand-black text-brand-white py-4 px-8 rounded-full" onClick={() => setCheckoutModal(true)}>Checkout</button>
                 </div>
             </section>
             <Modal title="Checkout" isVisible={checkoutModal} onClose={() => setCheckoutModal(false)}>
