@@ -5,6 +5,8 @@ import { BiMinus } from "react-icons/bi"
 import Header from "../componenets/Header"
 
 export default function StoreFront() {
+    const params = useParams()
+    console.log(params)
 
     return (
         <main>

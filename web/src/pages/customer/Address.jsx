@@ -1,5 +1,5 @@
 import * as Yup from "yup"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Formik, Form } from "formik"
 import { BsPlus } from "react-icons/bs"
 import Modal from "../../componenets/Modal"
@@ -14,20 +14,21 @@ export default function CustomerAddress(){
 
     return (
         <main className="p-8">
-            <section className="flex justify-between items-center border rounded p-4">
-                <h1 className="text-2xl">Address</h1>
+            <section className="flex justify-between items-center mb-4">
+                <h1 className="text-2xl font-semibold">Address</h1>
                 <button 
-                    className="bg-brand-primary py-2 px-8 text-brand-white flex items-center"
+                    className="bg-brand-black py-4 px-8 text-brand-white flex items-center rounded-full"
                     onClick={() => setAddressModal(true)}
                 >
                     <BsPlus size={20} />
                     <p>New Address</p>
                 </button>
             </section>
+            <hr/>
             <section className="">
                 {totalAddress === 0 ? (
                     <div className="h-44 flex justify-center items-center">
-                        <h1 className="text-xl">Create an address</h1>
+                        <h1 className="text-xl font-semibold">Create an address</h1>
                     </div>
                 ) : (
                     <div className="flex flex-col gap-y-8 mt-8">
@@ -69,7 +70,7 @@ export default function CustomerAddress(){
                                 <option value="izmir">Izmir</option>
                                 <option value="antalya">Antalya</option>
                         </SelectInput>
-                        <button type="submit" className="bg-brand-primary text-brand-white p-4">Create address</button>
+                        <button type="submit" className="bg-brand-black text-brand-white p-4 rounded-full">Save Changes</button>
                     </Form>
                 </Formik>
             </Modal>

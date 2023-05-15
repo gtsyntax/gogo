@@ -1,6 +1,7 @@
 [
     {
       "partner_id": "1001",
+      "restaurant_id": "12345",
       "restaurant_name": "The Burger Joint",
       "delivery_time": 40,
       "delivery_fee": 10,
@@ -33,6 +34,7 @@
     },
     {
       "partner_id": "1002",
+      "restaurant_id": "12345",
       "restaurant_name": "Pizza Palace",
       "delivery_time": 40,
       "delivery_fee": 10,
@@ -65,6 +67,7 @@
     },
     {
       "partner_id": "1003",
+      "restaurant_id": "12345",
       "restaurant_name": "Taco Time",
       "delivery_time": 40,
       "delivery_fee": 10,
@@ -97,6 +100,7 @@
     },
     {
         "partner_id": "1004",
+        "restaurant_id": "12345",
         "restaurant_name": "Taco Time",
         "delivery_time": 40,
         "delivery_fee": 10,
@@ -129,6 +133,7 @@
     },
     {
         "partner_id": "1005",
+        "restaurant_id": "12345",
         "restaurant_name": "The Burger Joint",
         "delivery_time": 40,
         "delivery_fee": 10,
@@ -161,6 +166,7 @@
     },
     {
         "partner_id": "1006",
+        "restaurant_id": "12345",
         "restaurant_name": "Pizza Palace",
         "delivery_time": 40,
         "delivery_fee": 10,

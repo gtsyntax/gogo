@@ -56,7 +56,7 @@ export default function PartnerRegister() {
                             </div>
                             <TextInput label="Email" name="email" type="email" />
                             <TextInput label="Mobile phone number" name="phone" type="tel" />
-                            <button type="submit" className="bg-brand-primary hover:bg-brand-secondary transition-colors text-white rounded-md p-3">Get Started</button>
+                            <button type="submit" className="bg-brand-black text-white rounded-full p-4">Get Started</button>
                         </Form>
                     </Formik>
                     <p className="text-brand-black">Don't have an account? <Link to="/partner/login" className="hover:text-brand-secondary">Sign In</Link></p>
