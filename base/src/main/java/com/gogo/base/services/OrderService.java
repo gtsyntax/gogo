@@ -10,6 +10,7 @@ import com.gogo.base.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
@@ -30,9 +31,11 @@ public class OrderService {
                 newOrder.setShopId(product.getShopId());
                 newOrder.setCartId(cartId);
                 newOrder.setStatus(OrderStatus.NEW);
+                newOrder.setCreatedDate(Instant.now());
                 orderRepository.save(newOrder);
             } else {
                 order.getOrderItems().add(orderItem);
+                order.setLastModifiedDate(Instant.now());
                 orderRepository.save(order);
             }
         }
@@ -70,6 +73,7 @@ public class OrderService {
         } else {
             order.setStatus(orderStatus);
             order.setNote(note);
+            order.setLastModifiedDate(Instant.now());
             orderRepository.save(order);
             return true;
         }

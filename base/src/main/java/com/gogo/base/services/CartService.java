@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,6 +25,7 @@ public class CartService {
     public void createCart(String username) {
         User user = userService.getByUsername(username);
         Cart cart = new Cart(user.getId());
+        cart.setCreatedDate(Instant.now());
         cartRepository.save(cart);
     }
 
@@ -48,6 +50,7 @@ public class CartService {
             return false;
         }
         cart.setStatus(status);
+        cart.setLastModifiedDate(Instant.now());
         cartRepository.save(cart);
         return true;
     }
@@ -59,6 +62,7 @@ public class CartService {
             totalPrice = totalPrice.add(orderItem.getPrice());
         }
         cart.setTotalPrice(totalPrice);
+        cart.setLastModifiedDate(Instant.now());
         cartRepository.save(cart);
     }
 

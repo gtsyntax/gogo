@@ -1,18 +1,21 @@
 package com.gogo.base.services;
 
+import com.gogo.base.dto.ShopDetail;
 import com.gogo.base.dto.ShopResponse;
 import com.gogo.base.dto.ShopUpdate;
-import com.gogo.base.dto.ShopDetail;
 import com.gogo.base.exceptions.NotFoundException;
+import com.gogo.base.models.Order;
+import com.gogo.base.models.OrderItem;
 import com.gogo.base.models.Shop;
 import com.gogo.base.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,6 +25,7 @@ import java.util.UUID;
 @Slf4j
 public class ShopService {
     private final ShopRepository shopRepository;
+    private final OrderService orderService;
 
     public void createStore(ShopDetail shopDetail) {
         Shop store = Shop.builder()
@@ -83,5 +87,20 @@ public class ShopService {
                 .createdAt(shop.getCreatedAt())
                 .updatedAt(shop.getUpdatedAt())
                 .build();
+    }
+
+    public BigDecimal getTotalPayments(UUID shopId, LocalDate startDate, LocalDate endDate) {
+        List<Order> orders = orderService.getOrdersByShopId(shopId);
+        BigDecimal totalPrice = BigDecimal.ZERO;
+        for (Order order : orders) {
+            for (OrderItem orderItem : order.getOrderItems()) {
+                ZoneId zone = ZoneId.systemDefault();
+                LocalDate createdDate = orderItem.getCreatedDate().atZone(zone).toLocalDate();
+                if (createdDate.isAfter(startDate) && createdDate.isBefore(endDate)) {
+                    totalPrice = totalPrice.add(orderItem.getPrice());
+                }
+            }
+        }
+        return totalPrice;
     }
 }

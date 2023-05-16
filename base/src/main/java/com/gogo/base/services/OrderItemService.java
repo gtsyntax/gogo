@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -29,6 +30,7 @@ public class OrderItemService {
                 .cartId(cartService.getCartsByStatusAndUserId(CartStatus.NEW, orderItemDto.getUserId()).stream().findFirst().get().getId())
                 .price((productService.getProduct(orderItemDto.getProductId()).getPrice()).multiply(BigDecimal.valueOf(orderItemDto.getQuantity())))
                 .build();
+        orderItem.setCreatedDate(Instant.now());
         orderItemRepository.save(orderItem);
         cartService.updateTotalPrice(orderItem.getCartId(), this.getOrderItemByCart(orderItem.getCartId()));
     }
