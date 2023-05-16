@@ -2,6 +2,8 @@ package com.gogo.base.repository;
 
 import com.gogo.base.enumerations.OrderStatus;
 import com.gogo.base.models.Order;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +17,6 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
     List<Order> findByShopId(UUID shopId);
 
     List<Order> findByShopIdAndStatus(UUID shopId, OrderStatus status);
+
+    Page<Order> findAllByCourierId(Pageable paging, UUID courierId);
 }

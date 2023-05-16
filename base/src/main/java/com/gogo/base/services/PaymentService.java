@@ -8,6 +8,7 @@ import com.gogo.base.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.UUID;
 
 
@@ -32,6 +33,7 @@ public class PaymentService {
                 // This can be changed later to implement a better payment system.
                 .status(PaymentStatus.ACCEPTED)
                 .build();
+        payment.setCreatedDate(Instant.now());
         paymentRepository.save(payment);
         cartService.setStatus(paymentDto.getCartId(), CartStatus.CONFIRMED);
         cartService.setPayment(paymentDto.getCartId(), payment.getId());

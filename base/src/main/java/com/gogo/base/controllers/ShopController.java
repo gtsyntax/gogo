@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -68,6 +70,13 @@ public class ShopController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteStore(@PathVariable("id") UUID id) {
         shopService.deleteShop(id);
+    }
+
+    @GetMapping("/{shop_id}/payments")
+    public BigDecimal getTotalPaymentsByStore(@PathVariable("shop_id") UUID shop_id,
+                                              @RequestParam(defaultValue = "0") LocalDate start_date,
+                                              @RequestParam(defaultValue = "0") LocalDate end_date) {
+        return shopService.getTotalPayments(shop_id, start_date, end_date);
     }
 
 }
