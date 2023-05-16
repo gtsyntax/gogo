@@ -79,5 +79,11 @@ public class OrderService {
         }
     }
 
+    public void assignCourier(UUID orderId, UUID courierId) {
+        Order order = this.getOrder(orderId);
+        order.setCourierId(courierId);
+        order.setLastModifiedDate(Instant.now());
+        orderRepository.save(order);
+    }
 
 }
