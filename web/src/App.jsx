@@ -28,11 +28,11 @@ import { updateTotal, getUserCartById } from './slices/cart'
 
 export default function App() {
   const dispatch = useDispatch()
-  const {user} = useSelector(state => state.auth)
+  //const {user} = useSelector(state => state.auth)
   const { cartItems } = useSelector((state) => state.cart)
 
   useEffect(() => {
-    dispatch(getUserCartById(user.id))
+    //dispatch(getUserCartById(user.id))
     dispatch(updateTotal())
   }, [cartItems, dispatch])
 

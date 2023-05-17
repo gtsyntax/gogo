@@ -4,7 +4,7 @@ import { SelectInput, TextInput } from "../../componenets/FormikUI"
 import { useSelector } from "react-redux"
 
 export default function PartnerSettings() {
-    const { user } = useSelector(state => state.auth)
+    //const { user } = useSelector(state => state.auth)
     return (
         <main className="p-8">
             <h1 className="mb-4 text-2xl font-semibold">Settings</h1>
@@ -19,7 +19,7 @@ export default function PartnerSettings() {
                             businessType: "",
                             firstName: "", 
                             lastName: "", 
-                            username: user.username, 
+                            username: "", 
                             email: "", 
                             phone: "", 
                             city: ""

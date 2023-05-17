@@ -4,7 +4,7 @@ import { TextInput } from "../../componenets/FormikUI"
 import { useSelector } from "react-redux"
 
 export default function CustomerSettings(){
-    const { user } = useSelector(state => state.auth)
+    //const { user } = useSelector(state => state.auth)
 
     return (
         <main className="p-8">
@@ -12,7 +12,7 @@ export default function CustomerSettings(){
             <hr/>
             <section className="mt-8">
                 <Formik
-                    initialValues={{firstName: "", lastName: "", username: user.username, email: "", phone: "", city: ""}}
+                    initialValues={{firstName: "", lastName: "", username: "", email: "", phone: "", city: ""}}
                     validationSchema={Yup.object({
                         firstName: Yup.string().required("Required"),
                         lastName: Yup.string().required("Required"),
