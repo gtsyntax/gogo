@@ -1,5 +1,8 @@
 export default function PartnerDashboard() {
     return (
-        <h1>Partner Dashboard</h1>
+        <main className="p-8">
+            <h1 className="mb-4 text-2xl font-semibold">Dashboard</h1>
+            <hr/>
+        </main>
     )
 }

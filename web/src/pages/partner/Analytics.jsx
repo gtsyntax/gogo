@@ -1,5 +1,8 @@
-export default function PartnerAnalytics(){
+export default function PartnerAnalytics() {
     return (
-        <h1>Partner Analytics</h1>
+        <main className="p-8">
+            <h1 className="mb-4 text-2xl font-semibold">Analytics</h1>
+            <hr/>
+        </main>
     )
 }

@@ -2,7 +2,9 @@ import { useSelector } from "react-redux"
 
 export default function PartnerOrders(){
     return (
-        <main className="grid grid-cols-4 gap-8 min-h-screen p-8">
+        <main className="p-8">
+            <h1 className="mb-4 text-2xl font-semibold">Orders</h1>
+            <hr/>
             <section className="col-span-3">
                 <OrderItemList />
             </section>

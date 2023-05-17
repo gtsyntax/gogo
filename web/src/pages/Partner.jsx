@@ -3,6 +3,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import SidebarLayout from "../componenets/SidebarLayout";
 import { RiBarChartLine, RiFileList2Line } from "react-icons/ri";
 import { RxDashboard, RxEnvelopeOpen, RxStar, RxPerson, RxEnter } from "react-icons/rx";
+import PartnerHeader from "../componenets/PartnerHeader"
 
 export default function Partner() {
     
@@ -18,6 +19,9 @@ export default function Partner() {
     ]
 
     return (
-        <SidebarLayout menuList={menuList} />
+        <>
+            <PartnerHeader />
+            <SidebarLayout menuList={menuList} />
+        </>
     )
 }

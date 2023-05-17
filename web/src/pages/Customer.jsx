@@ -2,6 +2,7 @@ import { MdOutlineFavoriteBorder } from "react-icons/md";
 import SidebarLayout from "../componenets/SidebarLayout";
 import { RiFileList2Line, RiMapPinLine, RiShoppingCart2Line } from "react-icons/ri";
 import { RxHome, RxStar, RxPerson, RxEnter } from "react-icons/rx";
+import CustomerHeader from "../componenets/CustomerHeader"
 
 export default function Customer() {
     const menuList = [
@@ -16,6 +17,10 @@ export default function Customer() {
     ]
 
     return (
-        <SidebarLayout menuList={menuList} />
+        <>
+            <CustomerHeader />
+            <SidebarLayout menuList={menuList} />
+        </>
+        
     )
 }
