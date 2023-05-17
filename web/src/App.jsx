@@ -24,13 +24,15 @@ import PartnerRegister from './pages/partner/Register'
 import RestaurantList from './pages/RestaurantList'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { updateTotal } from './slices/cart'
+import { updateTotal, getUserCartById } from './slices/cart'
 
 export default function App() {
-  const { cartItems } = useSelector((state) => state.cart)
   const dispatch = useDispatch()
+  const {user} = useSelector(state => state.auth)
+  const { cartItems } = useSelector((state) => state.cart)
 
   useEffect(() => {
+    dispatch(getUserCartById(user.id))
     dispatch(updateTotal())
   }, [cartItems, dispatch])
 

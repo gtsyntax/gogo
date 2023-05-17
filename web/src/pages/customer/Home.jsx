@@ -12,9 +12,9 @@ export default function CustomerHome() {
 
     return (
         <main className="p-8">
-            <h1>{currentUser.username}</h1>
-            <p>{currentUser.id}</p>
-            <section className="grid grid-cols-3 gap-4">
+            <h1 className="mb-4 text-2xl font-semibold">Home</h1>
+            <hr/>
+            <section className="grid grid-cols-3 gap-4 mt-8">
                 {restaurantList.map((restaurant, index) => (
                     <div key={index} className="relative border p-4">
                         <Link to={`/store/${restaurant.restaurant_id}`}>

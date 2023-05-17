@@ -1,11 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import cart from "../util/cart.json"
 
+export const getUserCartById = createAsyncThunk(
+    "carts/getUserCartById",
+    async (userId) => {
+        const response = await fetch(`api/api/carts/by_user/${userId}`)
+        const formattedResponse = await response.json()
+        return formattedResponse
+    }
+)
+
+// export const addItemToCart
+// export const deleteItemFromCart
+
+
 const initialState = {
-    cartItems: [...cart],
+    cartItems: [],
     quantity: 0,
     total: 0,
-    isLoading: true
+    isLoading: false
 }
 
 const cartSlice = createSlice({
@@ -32,6 +45,18 @@ const cartSlice = createSlice({
             })
             state.quantity = quantity
             state.total = total
+        }
+    },
+    extraReducers: {
+        [getUserCartById.pending]: (state) => {
+            state.isLoading = true
+        },
+        [getUserCartById.fulfilled]: (state, {payload}) => {
+            state.cartItems = payload
+            state.isLoading = false 
+        },
+        [getUserCartById.rejected]: (state) => {
+            state.isLoading = false
         }
     }
 })
