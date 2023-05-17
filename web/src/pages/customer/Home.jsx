@@ -3,12 +3,12 @@ import { useSelector } from "react-redux"
 import { MdFavoriteBorder } from "react-icons/md"
 
 export default function CustomerHome() {
-    const { user: currentUser } = useSelector((state) => state.auth)
+    //const { user: currentUser } = useSelector((state) => state.auth)
     const { restaurantList } = useSelector((state) => state.restaurant)
 
-    if (!currentUser) {
-        return <Navigate to="/" />
-    }
+    // if (!currentUser) {
+    //     return <Navigate to="/" />
+    // }
 
     return (
         <main className="p-8">
