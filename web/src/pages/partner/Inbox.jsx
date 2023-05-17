@@ -1,5 +1,8 @@
 export default function PartnerInbox(){
     return (
-        <h1>Partner Inbox</h1>
+        <main className="p-8">
+            <h1 className="mb-4 text-2xl font-semibold">Inbox</h1>
+            <hr/>
+        </main>
     )
 }
