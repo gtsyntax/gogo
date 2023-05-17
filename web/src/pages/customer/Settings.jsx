@@ -8,7 +8,9 @@ export default function CustomerSettings(){
 
     return (
         <main className="p-8">
-            <section>
+            <h1 className="mb-4 text-2xl font-semibold">Settings</h1>
+            <hr/>
+            <section className="mt-8">
                 <Formik
                     initialValues={{firstName: "", lastName: "", username: user.username, email: "", phone: "", city: ""}}
                     validationSchema={Yup.object({
