@@ -2,10 +2,7 @@ package com.gogo.base.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -18,10 +15,20 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "review")
+@Builder
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    @Column(name = "customer_id", nullable = false)
+    private UUID customerId;
+
+    @Column(name = "shop_id", nullable = false)
+    private UUID shopId;
+
+    @Column(name = "product_id", nullable = false)
+    private UUID productId;
 
     @Column(name = "content", nullable = false)
     private String content;

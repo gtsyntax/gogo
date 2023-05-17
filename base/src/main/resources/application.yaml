@@ -28,6 +28,9 @@ spring:
       INDENT_OUTPUT: false
       WRITE_DATES_AS_TIMESTAMPS: false
       WRITE_BIGDECIMAL_AS_PLAIN: true
+    date-format: "yyyy-MM-dd HH:mm:ss.SSS"
+    # Locale used for formatting
+    time-zone: "GMT+8"
   main:
     allow-circular-references: true
 
