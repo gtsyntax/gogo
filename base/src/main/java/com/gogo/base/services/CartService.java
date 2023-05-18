@@ -21,12 +21,14 @@ import java.util.UUID;
 public class CartService {
     private final CartRepository cartRepository;
     private final UserService userService;
+    private final CustomerService customerService;
 
     public void createCart(String username) {
         User user = userService.getByUsername(username);
         Cart cart = new Cart(user.getId());
         cart.setCreatedDate(Instant.now());
         cartRepository.save(cart);
+        customerService.assignCart(user.getId(), cart.getId());
     }
 
     public Cart getCart(UUID id) {

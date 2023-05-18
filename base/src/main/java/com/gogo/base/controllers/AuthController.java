@@ -1,10 +1,8 @@
 package com.gogo.base.controllers;
 
 import com.gogo.base.config.JwtTokenUtil;
-import com.gogo.base.dto.CredentialsDto;
-import com.gogo.base.dto.MyUserDetails;
-import com.gogo.base.dto.NewUserRequest;
-import com.gogo.base.dto.UserDto;
+import com.gogo.base.dto.*;
+import com.gogo.base.services.CustomerService;
 import com.gogo.base.services.JwtUserDetailsService;
 import com.gogo.base.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
+    private final CustomerService customerService;
     private final JwtUserDetailsService userDetailsService;
     private final JwtTokenUtil jwtTokenUtil;
 
@@ -51,6 +50,25 @@ public class AuthController {
         userService.createNewUser(newUserRequest);
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
+    @PostMapping("/register/customer")
+    public ResponseEntity<?> createNewCustomer(@RequestBody CustomerDto customerDto) {
+        boolean verifier = customerService.createNewCustomer(customerDto);
+        if(verifier)
+            return ResponseEntity.ok(HttpStatus.CREATED);
+        return new ResponseEntity<>("An error occurred while creating customer.", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+//    @PostMapping("/register/partner")
+//    public ResponseEntity<?> createNewPartner(@RequestBody NewUserRequest newUserRequest) {
+//        userService.createNewUser(newUserRequest);
+//        return ResponseEntity.ok(HttpStatus.CREATED);
+//    }
+//
+//    @PostMapping("/register/courier")
+//    public ResponseEntity<?> createNewCourier(@RequestBody NewUserRequest newUserRequest) {
+//        userService.createNewUser(newUserRequest);
+//        return ResponseEntity.ok(HttpStatus.CREATED);
+//    }
 
 //    @PostMapping("/validateToken")
 //    public ResponseEntity<UserDto> signIn(@RequestParam String token) {
