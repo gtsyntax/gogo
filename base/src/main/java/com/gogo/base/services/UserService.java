@@ -62,11 +62,8 @@ public class UserService {
         List<Role> roles = new ArrayList<>();
         roleTypes.forEach(roleType -> roles.add(roleService.findByName(roleType)));
 
-        final List<Role> rolesOfUser = user.getRoles();
-        if (rolesOfUser.isEmpty()) {
-            user.setRoles(new ArrayList<>());
-        }
-        roles.forEach(role -> user.getRoles().add(role));
+        user.setRoles(new ArrayList<Role>(roles));
+        //roles.forEach(role -> user.getRoles().add(role));
 
         userRepository.save(user);
         return Boolean.TRUE;

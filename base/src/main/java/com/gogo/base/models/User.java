@@ -35,7 +35,6 @@ public class User {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Role> roles;
 
-    private Set<UUID> cart;
 
     @Column
     private LocalDateTime createdAt;
