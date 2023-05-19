@@ -46,29 +46,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> createNewUser(@RequestBody NewUserRequest newUserRequest) {
-        userService.createNewUser(newUserRequest);
-        return ResponseEntity.ok(HttpStatus.CREATED);
-    }
-    @PostMapping("/register/customer")
-    public ResponseEntity<?> createNewCustomer(@RequestBody CustomerDto customerDto) {
-        boolean verifier = customerService.createNewCustomer(customerDto);
-        if(verifier)
+    public ResponseEntity<?> createNewUser(@RequestBody NewUserDto newUserDto) {
+        boolean verifier = userService.createNewUser(newUserDto);
+        if (verifier)
             return ResponseEntity.ok(HttpStatus.CREATED);
-        return new ResponseEntity<>("An error occurred while creating customer.", HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>("An error occurred while creating user.", HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
-//    @PostMapping("/register/partner")
-//    public ResponseEntity<?> createNewPartner(@RequestBody NewUserRequest newUserRequest) {
-//        userService.createNewUser(newUserRequest);
-//        return ResponseEntity.ok(HttpStatus.CREATED);
-//    }
-//
-//    @PostMapping("/register/courier")
-//    public ResponseEntity<?> createNewCourier(@RequestBody NewUserRequest newUserRequest) {
-//        userService.createNewUser(newUserRequest);
-//        return ResponseEntity.ok(HttpStatus.CREATED);
-//    }
 
 //    @PostMapping("/validateToken")
 //    public ResponseEntity<UserDto> signIn(@RequestParam String token) {

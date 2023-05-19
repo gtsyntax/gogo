@@ -1,12 +1,15 @@
 package com.gogo.base.services;
 
-import com.gogo.base.dto.NewUserRequest;
+import com.gogo.base.dto.NewUserDto;
+import com.gogo.base.dto.UserBaseRequest;
 import com.gogo.base.enumerations.RoleType;
 import com.gogo.base.exceptions.AlreadyExistException;
 import com.gogo.base.exceptions.NotFoundException;
 import com.gogo.base.mapper.UserMapper;
+import com.gogo.base.models.Customer;
 import com.gogo.base.models.Role;
 import com.gogo.base.models.User;
+import com.gogo.base.repository.CustomerRepository;
 import com.gogo.base.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -26,9 +29,45 @@ public class UserService {
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
     private final RoleService roleService;
+    private final CustomerRepository customerRepository;
 
 
-    public void createNewUser(NewUserRequest newUserRequest) {
+    public boolean createNewUser(NewUserDto newUserDto) {
+        UserBaseRequest newUserRequest = UserBaseRequest.builder()
+                .username(newUserDto.getUsername())
+                .email(newUserDto.getEmail())
+                .password(newUserDto.getPassword())
+                .build();
+        this.createUserBase(newUserRequest);
+        User user = this.getByUsername(newUserDto.getUsername());
+        Customer newCustomer = Customer.builder()
+                .id(user.getId())
+                .firstName(newUserDto.getFirstName())
+                .lastName(newUserDto.getLastName())
+                .phone(newUserDto.getPhone())
+                .build();
+        customerRepository.save(newCustomer);
+        List<RoleType> roles = new ArrayList<RoleType>();
+        switch (newUserDto.getRole()){
+            case "customer":
+                roles.add(RoleType.ROLE_CUSTOMER);
+                break;
+            case "partner":
+                roles.add(RoleType.ROLE_PARTNER);
+                break;
+            case "courier":
+                roles.add(RoleType.ROLE_COURIER);
+                break;
+            default:
+                return false;
+        }
+        boolean verifier = this.assignRoleToUser(newUserDto.getUsername(), roles);
+        if (verifier)
+            return true;
+        return false;
+    }
+
+    public void createUserBase(UserBaseRequest newUserRequest) {
 
 
         Objects.requireNonNull(newUserRequest, "User cannot be null");
@@ -69,7 +108,7 @@ public class UserService {
         return Boolean.TRUE;
     }
 
-    public User getById(UUID id){
+    public User getById(UUID id) {
         return userRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 }
