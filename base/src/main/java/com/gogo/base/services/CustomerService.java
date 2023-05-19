@@ -6,7 +6,9 @@ import com.gogo.base.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -21,7 +23,13 @@ public class CustomerService {
 
     public void assignCart(UUID customerId, UUID cartId) {
         Customer customer = this.getCustomerById(customerId).orElseThrow(NotFoundException::new);
-        customer.getCart().add(cartId);
+        Set<UUID> cart = customer.getCart();
+        if (cart == null) {
+            cart = new HashSet<>();
+            customer.setCart(cart);
+        }
+
+        cart.add(cartId);
         customerRepository.save(customer);
     }
 
