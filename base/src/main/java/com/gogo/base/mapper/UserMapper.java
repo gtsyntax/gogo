@@ -1,6 +1,6 @@
 package com.gogo.base.mapper;
 
-import com.gogo.base.dto.NewUserRequest;
+import com.gogo.base.dto.UserBaseRequest;
 import com.gogo.base.dto.UserDto;
 import com.gogo.base.models.User;
 import org.mapstruct.Builder;
@@ -22,5 +22,5 @@ public interface UserMapper {
     @Mapping(source = "encodedPassword", target = "password")
     User toUser(UserDto userDto, String encodedPassword);
 
-    User toUser(NewUserRequest newUserRequest);
+    User toUser(UserBaseRequest newUserRequest);
 }

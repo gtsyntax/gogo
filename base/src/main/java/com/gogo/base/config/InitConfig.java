@@ -1,7 +1,7 @@
 package com.gogo.base.config;
 
 
-import com.gogo.base.dto.NewUserRequest;
+import com.gogo.base.dto.UserBaseRequest;
 import com.gogo.base.enumerations.RoleType;
 import com.gogo.base.exceptions.NotFoundException;
 import com.gogo.base.models.Role;
@@ -9,7 +9,6 @@ import com.gogo.base.models.User;
 import com.gogo.base.services.RoleService;
 import com.gogo.base.services.UserService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,11 +37,11 @@ public class InitConfig {
                 final User adminUser = userService.getByUsername("sys.admin");
 
             } catch (NotFoundException e) {
-                NewUserRequest adminUser = new NewUserRequest();
+                UserBaseRequest adminUser = new UserBaseRequest();
                 adminUser.setUsername("sys.admin");
                 adminUser.setEmail("admin@gogo.com");
                 adminUser.setPassword("admin123");
-                userService.createNewUser(adminUser);
+                userService.createUserBase(adminUser);
                 userService.assignRoleToUser(adminUser.getUsername(), List.of(RoleType.ROLE_ADMIN));
             } catch (IllegalStateException e) {
                 System.out.println("illegal state exception");
