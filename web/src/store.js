@@ -6,6 +6,10 @@ import restaurantReducer from "./slices/restaurants"
 import orderReducer from "./slices/order"
 import menuReducer from "./slices/menu"
 import messageReducer from "./slices/message"
+import favoritesReducer from "./slices/favorites"
+import reviewsReducer from "./slices/reviews"
+
+
 
 const reducer = {
     auth: authReducer,
@@ -14,7 +18,10 @@ const reducer = {
     restaurant: restaurantReducer,
     order: orderReducer,
     menu: menuReducer,
-    message: messageReducer
+    message: messageReducer,
+    reviews: reviewsReducer,
+    favorites: favoritesReducer,
+
 }
 
 export const store = configureStore({

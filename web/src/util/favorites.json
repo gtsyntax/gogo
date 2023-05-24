@@ -1,0 +1,30 @@
+[
+    {
+      "id": 1,
+      "name": "Restaurant 1",
+      "address": "123 Main St, City, Country",
+      "phone": "123-456-7890",
+      "delivery_time":40,
+      "delivery_fee":40,
+      "rating":40
+
+    },
+    {
+      "id": 2,
+      "name": "Restaurant 2",
+      "address": "456 Elm St, City, Country",
+      "phone": "987-654-3210",
+      "delivery_time":40,
+      "delivery_fee":40,
+      "rating":40
+    },
+    {
+      "id": 3,
+      "name": "Restaurant 3",
+      "address": "789 Oak St, City, Country",
+      "phone": "456-123-7890",
+      "delivery_time":40,
+      "delivery_fee":40,
+      "rating":40
+    }
+  ]

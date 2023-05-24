@@ -27,12 +27,12 @@ export default function CustomerSettings(){
                 >
                     <Form className="shadow-md p-8 rounded-lg space-y-8">
                         <div className="grid grid-cols-2 gap-8">
-                            <TextInput label="First Name" name="firstName" type="text" />
-                            <TextInput label="Last Name" name="lastName" type="text" />
-                            <TextInput label="Username" name="username" type="text" />
-                            <TextInput label="Email address" name="email" type="email" />
+                            <TextInput label="First Name" name="firstName" type="text" placeholder="Enter your First Name" />
+                            <TextInput label="Last Name" name="lastName" type="text" placeholder="Enter your Last Name"/>
+                            <TextInput label="Username" name="username" type="text" placeholder="Enter your Username"/>
+                            <TextInput label="Email address" name="email" type="email" placeholder="Enter your Email address"/>
                         </div>
-                        <TextInput label="Phone number" name="phone" type="tel" />
+                        <TextInput label="Phone number" name="phone" type="tel" placeholder="Enter your phone number "/>
                         <button type="submit" className="bg-brand-black text-brand-white p-4 rounded-full">Save Changes</button>
                     </Form>
                 </Formik>
