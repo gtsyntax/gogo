@@ -1,8 +1,10 @@
 package com.gogo.base.controllers;
 
 import com.gogo.base.config.JwtTokenUtil;
-import com.gogo.base.dto.*;
-import com.gogo.base.services.CustomerService;
+import com.gogo.base.dto.CredentialsDto;
+import com.gogo.base.dto.MyUserDetails;
+import com.gogo.base.dto.NewUserDto;
+import com.gogo.base.dto.UserDto;
 import com.gogo.base.services.JwtUserDetailsService;
 import com.gogo.base.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,25 +26,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
-    private final CustomerService customerService;
     private final JwtUserDetailsService userDetailsService;
     private final JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody CredentialsDto authenticationRequest) throws Exception {
 
-        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
+        //Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
+        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        if (authenticate.isAuthenticated()) {
+        //if (authenticate.isAuthenticated()) {
             final MyUserDetails userDetails = userDetailsService
                     .loadUserByUsername(authenticationRequest.getUsername());
 
             final String token = jwtTokenUtil.generateToken(userDetails);
 
             return ResponseEntity.ok(new UserDto(userDetails.getId(), userDetails.getUsername(), token));
-        } else {
-            throw new RuntimeException("invalid access");
-        }
+        //} else {
+            //throw new RuntimeException("invalid access");
+        //}
     }
 
     @PostMapping("/register")

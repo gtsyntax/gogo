@@ -32,7 +32,7 @@ public class User {
     @JsonIgnore
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
 
 
