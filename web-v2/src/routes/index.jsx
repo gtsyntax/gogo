@@ -7,11 +7,12 @@ export default function Index() {
                 <div className="container mx-auto h-full flex items-center">
                     <div>
                         <h1 className="text-6xl font-bold">Order food for delivery</h1>
-                        <p className="p-2 text-xl">Whatever you want from local restaurants, brought right to your door.</p>
+                        <p className="py-2 text-xl">Whatever you want from local restaurants, brought right to your door.</p>
                         <form className="flex gap-2">
                             <input type="text" placeholder="Enter delivery address" className="p-4 w-3/4"/>
                             <button className="w-32 bg-black text-white">Find Food</button>
                         </form>
+                        <p className="py-2 text-xl"><Link to={`/shops`}>View shops</Link></p>
                     </div>
                 </div>
             </section>

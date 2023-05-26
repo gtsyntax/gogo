@@ -6,6 +6,8 @@ import ErrorPage from './error-page'
 import Register from './routes/register'
 import Login from './routes/login'
 import Index from './routes/index'
+import Shop from './routes/shop'
+import ShopDetail from './routes/shopDetail'
 /* routes */
 import {
   createBrowserRouter,
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />
+      },
+      {
+        path: "shops",
+        element: <Shop />
+      },
+      {
+        path: "shops/:shopId",
+        element: <ShopDetail />
       }
     ]
   }
