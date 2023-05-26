@@ -5,10 +5,10 @@ export default function ErrorPage() {
     console.log(error)
 
     return (
-        <div>
-            <h1>Oops!</h1>
-            <p>Sorry, an unexpected error has occurred.</p>
-            <p>
+        <div className="min-h-screen border flex flex-col justify-center items-center">
+            <h1 className="text-4xl">Oops!</h1>
+            <p className="text-2xl">Sorry, an unexpected error has occurred.</p>
+            <p className="text-xl">
                 <i>{error.statusText || error.message}</i>
             </p>
         </div>
