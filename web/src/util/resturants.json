@@ -1,0 +1,200 @@
+[
+    {
+      "partner_id": "1001",
+      "restaurant_id": "12345",
+      "restaurant_name": "The Burger Joint",
+      "delivery_time": 40,
+      "delivery_fee": 10,
+      "rating": 4.4,
+      "address": "123 Main St, City, State ZIP",
+      "phone": "555-123-4567",
+      "cuisine_type": "American",
+      "menu_items": [
+        {
+          "item_name": "Hamburger",
+          "description": "A juicy beef patty topped with lettuce, tomato, and cheese.",
+          "price": 8.99
+        },
+        {
+          "item_name": "Cheeseburger",
+          "description": "A classic hamburger with melted cheese on top.",
+          "price": 9.99
+        },
+        {
+          "item_name": "Fries",
+          "description": "Crispy golden-brown potato fries.",
+          "price": 3.99
+        },
+        {
+          "item_name": "Onion Rings",
+          "description": "Battered and deep-fried onion rings.",
+          "price": 4.99
+        }
+      ]
+    },
+    {
+      "partner_id": "1002",
+      "restaurant_id": "12345",
+      "restaurant_name": "Pizza Palace",
+      "delivery_time": 40,
+      "delivery_fee": 10,
+      "rating": 4.4,
+      "address": "456 Oak St, City, State ZIP",
+      "phone": "555-234-5678",
+      "cuisine_type": "Italian",
+      "menu_items": [
+        {
+          "item_name": "Margherita Pizza",
+          "description": "Fresh mozzarella cheese, tomato sauce, and basil on a crispy crust.",
+          "price": 10.99
+        },
+        {
+          "item_name": "Pepperoni Pizza",
+          "description": "Classic pizza with spicy pepperoni slices on top.",
+          "price": 12.99
+        },
+        {
+          "item_name": "Calzone",
+          "description": "Folded pizza with mozzarella cheese, tomato sauce, and your choice of fillings.",
+          "price": 8.99
+        },
+        {
+          "item_name": "Tiramisu",
+          "description": "Layers of espresso-soaked ladyfingers and mascarpone cream dusted with cocoa powder.",
+          "price": 6.99
+        }
+      ]
+    },
+    {
+      "partner_id": "1003",
+      "restaurant_id": "12345",
+      "restaurant_name": "Taco Time",
+      "delivery_time": 40,
+      "delivery_fee": 10,
+      "rating": 4.4,
+      "address": "789 Maple St, City, State ZIP",
+      "phone": "555-345-6789",
+      "cuisine_type": "Mexican",
+      "menu_items": [
+        {
+          "item_name": "Taco",
+          "description": "A crispy corn or soft flour tortilla filled with your choice of meat, lettuce, tomato, and cheese.",
+          "price": 2.99
+        },
+        {
+          "item_name": "Burrito",
+          "description": "A large flour tortilla filled with rice, beans, cheese, and your choice of meat.",
+          "price": 8.99
+        },
+        {
+          "item_name": "Chips and Salsa",
+          "description": "Crispy tortilla chips served with fresh salsa.",
+          "price": 3.99
+        },
+        {
+          "item_name": "Quesadilla",
+          "description": "A large flour tortilla filled with cheese and your choice of meat or veggies.",
+          "price": 7.99
+        }
+      ]
+    },
+    {
+        "partner_id": "1004",
+        "restaurant_id": "12345",
+        "restaurant_name": "Taco Time",
+        "delivery_time": 40,
+        "delivery_fee": 10,
+        "rating": 4.4,
+        "address": "789 Maple St, City, State ZIP",
+        "phone": "555-345-6789",
+        "cuisine_type": "Mexican",
+        "menu_items": [
+          {
+            "item_name": "Taco",
+            "description": "A crispy corn or soft flour tortilla filled with your choice of meat, lettuce, tomato, and cheese.",
+            "price": 2.99
+          },
+          {
+            "item_name": "Burrito",
+            "description": "A large flour tortilla filled with rice, beans, cheese, and your choice of meat.",
+            "price": 8.99
+          },
+          {
+            "item_name": "Chips and Salsa",
+            "description": "Crispy tortilla chips served with fresh salsa.",
+            "price": 3.99
+          },
+          {
+            "item_name": "Quesadilla",
+            "description": "A large flour tortilla filled with cheese and your choice of meat or veggies.",
+            "price": 7.99
+          }
+        ]
+    },
+    {
+        "partner_id": "1005",
+        "restaurant_id": "12345",
+        "restaurant_name": "The Burger Joint",
+        "delivery_time": 40,
+        "delivery_fee": 10,
+        "rating": 4.4,
+        "address": "123 Main St, City, State ZIP",
+        "phone": "555-123-4567",
+        "cuisine_type": "American",
+        "menu_items": [
+          {
+            "item_name": "Hamburger",
+            "description": "A juicy beef patty topped with lettuce, tomato, and cheese.",
+            "price": 8.99
+          },
+          {
+            "item_name": "Cheeseburger",
+            "description": "A classic hamburger with melted cheese on top.",
+            "price": 9.99
+          },
+          {
+            "item_name": "Fries",
+            "description": "Crispy golden-brown potato fries.",
+            "price": 3.99
+          },
+          {
+            "item_name": "Onion Rings",
+            "description": "Battered and deep-fried onion rings.",
+            "price": 4.99
+          }
+        ]
+    },
+    {
+        "partner_id": "1006",
+        "restaurant_id": "12345",
+        "restaurant_name": "Pizza Palace",
+        "delivery_time": 40,
+        "delivery_fee": 10,
+        "rating": 4.4,
+        "address": "456 Oak St, City, State ZIP",
+        "phone": "555-234-5678",
+        "cuisine_type": "Italian",
+        "menu_items": [
+          {
+            "item_name": "Margherita Pizza",
+            "description": "Fresh mozzarella cheese, tomato sauce, and basil on a crispy crust.",
+            "price": 10.99
+          },
+          {
+            "item_name": "Pepperoni Pizza",
+            "description": "Classic pizza with spicy pepperoni slices on top.",
+            "price": 12.99
+          },
+          {
+            "item_name": "Calzone",
+            "description": "Folded pizza with mozzarella cheese, tomato sauce, and your choice of fillings.",
+            "price": 8.99
+          },
+          {
+            "item_name": "Tiramisu",
+            "description": "Layers of espresso-soaked ladyfingers and mascarpone cream dusted with cocoa powder.",
+            "price": 6.99
+          }
+        ]
+    }
+]

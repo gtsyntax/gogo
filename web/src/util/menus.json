@@ -1,0 +1,62 @@
+[
+    {
+        "uuid": "7e5a5d5f-1e76-4edc-96bb-82f4252a41c9",
+        "name": "Chipotle Chicken, Scrambled Egg & Avocado on Ciabatta",
+        "qty": 0,
+        "price": 9.99
+    },
+    {
+        "uuid": "28500eb9-7e8a-4d48-9c05-1e78b8c89d03",
+        "name": "NEW Green Goddess Caprese Melt – Toasted Baguette",
+        "qty": 0,
+        "price": 14.99
+    },
+    {
+        "uuid": "a25b54b1-84a9-44c8-9472-2c695d55e68c",
+        "name": "NEW Smoky Buffalo Chicken Melt – Toasted Baguette",
+        "qty": 0,
+        "price": 24.99
+    },
+    {
+        "uuid": "e2a19b61-b24d-43cc-891c-94eaf820c8a3",
+        "name": "The Spicy Take Chicken Sandwich",
+        "qty": 0,
+        "price": 12.49
+    },
+    {
+        "uuid": "b4652f2d-2b04-4dfc-8d77-70f86c10e9af",
+        "name": "NEW Smoky Buffalo Chicken Melt – Toasted Baguette",
+        "qty": 0,
+        "price": 7.99
+    },
+    {
+        "uuid": "7c8a5a5f-48c9-4538-84e2-ba13fc724f20",
+        "name": "NEW Smoky Buffalo Chicken Melt – Toasted Baguette",
+        "qty": 0,
+        "price": 19.99
+    },
+    {
+        "uuid": "3fa1c8d9-9f99-4e32-96a6-ebc9f9d6df8c",
+        "name": "NEW Smoky Buffalo Chicken Melt – Toasted Baguette",
+        "qty": 0,
+        "price": 39.99
+    },
+    {
+        "uuid": "8c776a11-883d-4cc2-9bc2-334f20b1e0c2",
+        "name": "NEW Smoky Buffalo Chicken Melt – Toasted Baguette",
+        "qty": 0,
+        "price": 6.99
+    },
+    {
+        "uuid": "6390c964-4af4-4c8e-9033-fd2a5f5a5c5e",
+        "name": "The Spicy Take Chicken Sandwich",
+        "qty": 0,
+        "price": 29.99
+    },
+    {
+        "uuid": "8eb9b7de-74f6-432f-b63e-cc81930d035d",
+        "name": "The Spicy Take Chicken Sandwich",
+        "qty": 0,
+        "price": 10.99
+    }                  
+]
