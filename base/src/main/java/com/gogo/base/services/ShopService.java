@@ -34,6 +34,8 @@ public class ShopService {
                 .city(shopDetail.getCity())
                 .country(shopDetail.getCountry())
                 .zipCode(shopDetail.getZipCode())
+                .minDeliveryFee(shopDetail.getMinDeliveryFee())
+                .shopOwner(shopDetail.getShopOwner())
                 .build();
         store.setCreatedAt(LocalDateTime.now());
         shopRepository.save(store);
@@ -86,6 +88,7 @@ public class ShopService {
                 .zipCode(shop.getZipCode())
                 .createdAt(shop.getCreatedAt())
                 .updatedAt(shop.getUpdatedAt())
+                .minDeliveryFee(shop.getMinDeliveryFee())
                 .build();
     }
 
@@ -102,5 +105,10 @@ public class ShopService {
             }
         }
         return totalPrice;
+    }
+
+    public ShopResponse getShopByShopOwner(UUID shopOwnerId) {
+        Optional<Shop> optionalShop = shopRepository.findByShopOwner(shopOwnerId);
+        return optionalShop.stream().map(this::mapToShopResponse).findFirst().orElseThrow(NotFoundException::new);
     }
 }

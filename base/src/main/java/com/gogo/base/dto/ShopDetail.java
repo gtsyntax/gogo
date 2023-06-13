@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.util.UUID;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -15,4 +18,6 @@ public class ShopDetail {
     private String city;
     private String country;
     private String zipCode;
+    private BigDecimal minDeliveryFee;
+    private UUID shopOwner;
 }

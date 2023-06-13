@@ -1,4 +1,9 @@
+"use client"
 import Link from "next/link"
+import { useEffect, useState } from "react"
+import { getRequest } from "@/api_service"
+import { assignShop } from "@/redux/features/shop-slice"
+import { useDispatch } from "react-redux"
 
 export const metadata = {
     title: 'Gogo | Partner',
@@ -6,6 +11,17 @@ export const metadata = {
 }
 
 export default function PartnerLayout({ children, params }) {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        getPartnerShop()
+    }, [])
+
+    const getPartnerShop = async () => {
+        const response = await getRequest(`/api/shops/owner/${params.id}`)
+        dispatch(assignShop(response))
+    }
+
     return (
         <main className="min-h-screen flex">
             <section className="border-r w-2/12 bg-gray-50">
@@ -27,5 +43,5 @@ export default function PartnerLayout({ children, params }) {
                 </div>
             </section>
         </main>       
-      )
+    )
 }

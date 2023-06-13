@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -33,6 +34,8 @@ public class Shop {
     private String zipCode;
     @Column(name = "shopType")
     private ShopType shopType;
+    private BigDecimal minDeliveryFee;
+    private UUID shopOwner;
     @Column(name = "createdAt")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime createdAt;

@@ -80,4 +80,9 @@ public class ShopController {
         return shopService.getTotalPayments(shop_id, start_date, end_date);
     }
 
+    @GetMapping("/owner/{shop_owner_id}")
+    public ShopResponse getShopByShopOwnerId(@PathVariable("shop_owner_id") UUID shopOwnerId) {
+        return shopService.getShopByShopOwner(shopOwnerId);
+    }
+
 }

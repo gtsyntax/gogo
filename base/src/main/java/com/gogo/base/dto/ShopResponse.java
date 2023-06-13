@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ public class ShopResponse {
     private String city;
     private String country;
     private String zipCode;
+    private BigDecimal minDeliveryFee;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
