@@ -35,7 +35,7 @@ public class UserController {
             pageTuts = userRepository.findAll(paging);
 
             Map<String, Object> response = new HashMap<>();
-            response.put("products", pageTuts.getContent());
+            response.put("users", pageTuts.getContent());
             response.put("currentPage", pageTuts.getNumber());
             response.put("totalItems", pageTuts.getTotalElements());
             response.put("totalPages", pageTuts.getTotalPages());

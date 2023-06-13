@@ -1,8 +1,0 @@
-{
-    "carrierName": "Carrier name",
-    "location": "carrier location",
-    "contact": {
-    "email": "info@carriercompany.com",
-    "phone": "123-456-7890"
-    }
-}

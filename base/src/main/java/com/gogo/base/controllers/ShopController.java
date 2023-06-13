@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/shops")
 @RequiredArgsConstructor
 public class ShopController {
@@ -44,7 +45,7 @@ public class ShopController {
             pageTuts = shopRepository.findAll(paging);
 
             Map<String, Object> response = new HashMap<>();
-            response.put("products", pageTuts.getContent());
+            response.put("shops", pageTuts.getContent());
             response.put("currentPage", pageTuts.getNumber());
             response.put("totalItems", pageTuts.getTotalElements());
             response.put("totalPages", pageTuts.getTotalPages());

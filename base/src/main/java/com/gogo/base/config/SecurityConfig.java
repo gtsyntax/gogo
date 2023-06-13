@@ -29,7 +29,10 @@ public class SecurityConfig {
                 .cors()
                 .and().csrf().disable()
                 .authorizeRequests()
-                .requestMatchers(new AntPathRequestMatcher("/auth/**"))
+                .requestMatchers(
+                        new AntPathRequestMatcher("/auth/**"),
+                        new AntPathRequestMatcher("/api/shops/**", "GET")
+                )
                 .permitAll()
                 .anyRequest()
                 .permitAll()
