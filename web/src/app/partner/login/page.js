@@ -1,9 +1,9 @@
 "use client"
 import Link from "next/link";
 import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation'
-import { postRequest } from "@/api_service";
+import { getRequest, postRequest } from "@/api_service";
 import { login } from '@/redux/features/auth-slice';
 
 export default function CustomerLogin() {
@@ -12,14 +12,14 @@ export default function CustomerLogin() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-
-
     const handleLogin = async (event) => {
         event.preventDefault()
         const response = await postRequest("/auth/login", {username, password})
-        localStorage.setItem("user", JSON.stringify(response.data))
         dispatch(login(response.data))
-        router.push(`/partner/${response.data.id}`)
+
+        const existingShop = await getRequest(`/api/shops/owner/${response.data.id}`)
+        //router.push(`/partner/${response.data.id}`)
+        //router.push(`/partner/forms/new-store`)
     }
 
     return (

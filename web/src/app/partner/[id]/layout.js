@@ -1,9 +1,10 @@
 "use client"
 import Link from "next/link"
-import { useEffect, useState } from "react"
 import { getRequest } from "@/api_service"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { assignShop } from "@/redux/features/shop-slice"
-import { useDispatch } from "react-redux"
+import { assignUser } from "@/redux/features/auth-slice"
 
 export const metadata = {
     title: 'Gogo | Partner',
@@ -12,36 +13,52 @@ export const metadata = {
 
 export default function PartnerLayout({ children, params }) {
     const dispatch = useDispatch()
+    const {user} = useSelector(state => state.authReducer)
+    const {shop} = useSelector(state => state.shopReducer)
 
     useEffect(() => {
+        getPartner()
         getPartnerShop()
     }, [])
+
+    const getPartner = async () => {
+        const response = await getRequest(`/api/users/${params.id}`)
+        dispatch(assignUser(response))
+    }
 
     const getPartnerShop = async () => {
         const response = await getRequest(`/api/shops/owner/${params.id}`)
         dispatch(assignShop(response))
     }
 
-    return (
-        <main className="min-h-screen flex">
-            <section className="border-r w-2/12 bg-gray-50">
-                <div className="mt-8 mx-8">
-                    <h1 className="text-green-500 font-bold text-2xl">Gogo</h1>
+    if (user && shop) {
+        return (
+            <main className="min-h-screen flex">
+                <section className="border-r w-2/12 bg-gray-50">
+                    <div className="mt-8 mx-8">
+                        <h1 className="text-green-500 font-bold text-2xl">Gogo</h1>
 
-                    <ul className="mt-8 flex flex-col gap-2">
-                        <li className="font-bold text-xl"><Link href={`/partner/${params.id}`}>Dashboard</Link></li>
-                        <li className="font-bold text-xl"><Link href={`/partner/${params.id}/orders`}>Orders</Link></li>
-                        <li className="font-bold text-xl"><Link href={`/partner/${params.id}/menus`}>Menus</Link></li>
-                        <li className="font-bold text-xl"><Link href={`/partner/${params.id}/reviews`}>Reviews</Link></li>
-                        <li className="font-bold text-xl"><Link href={`/partner/${params.id}/settings`}>Settings</Link></li>
-                    </ul>
-                </div>
-            </section>
-            <section className="w-10/12">
-                <div className="mt-12 mx-20">
-                    {children}
-                </div>
-            </section>
-        </main>       
+                        <ul className="mt-8 flex flex-col gap-2">
+                            <li className="font-bold text-xl"><Link href={`/partner/${params.id}`}>Dashboard</Link></li>
+                            <li className="font-bold text-xl"><Link href={`/partner/${params.id}/orders`}>Orders</Link></li>
+                            <li className="font-bold text-xl"><Link href={`/partner/${params.id}/menus`}>Menus</Link></li>
+                            <li className="font-bold text-xl"><Link href={`/partner/${params.id}/reviews`}>Reviews</Link></li>
+                            <li className="font-bold text-xl"><Link href={`/partner/${params.id}/settings`}>Settings</Link></li>
+                        </ul>
+                    </div>
+                </section>
+                <section className="w-10/12">
+                    <div className="mt-12 mx-20">
+                        {children}
+                    </div>
+                </section>
+            </main>       
+        )
+    }
+
+    return (
+        <main className="min-h-screen flex justify-center items-center">
+            <h1>Loading...</h1>
+        </main>
     )
 }

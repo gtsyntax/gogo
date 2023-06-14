@@ -1,16 +1,17 @@
 export default function StorePage({params}) {
-    console.log(params)
     return (
-        <main>
-            <section className="bg-emerald-700 py-4 px-16">
-                <nav className="flex justify-between items-center">
-                    <h1 className="text-white font-bold text-4xl">Gogo</h1>
-                    <ul className="flex gap-4">
-                        <li className="text-white text-xl">Cart(0)</li>
-                        <li className="text-white text-xl">john_doe</li>
-                    </ul>
-                </nav>
-            </section>
-        </main>
+        <section className="container mx-auto">
+            <div className="border p-8 mb-16">
+                <h1 className="text-4xl font-bold">Thai Villa</h1>
+                <p className="text-xl">4.8 (200+ ratings) &middot; &#8378;50 Minimum Delivery Fee &middot; &#8378;&#8378;</p>
+            </div>
+            <div>
+                <h2 className="text-xl font-bold mb-8">Menus</h2>
+                <hr />
+                <div className="mt-4">
+                    <h1>Loading...</h1>
+                </div>
+            </div>
+        </section>
     )
 }

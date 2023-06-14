@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const user = JSON.parse(localStorage.getItem("user"))
-
 const initialState = {
-    isAuthenticated: user ? true : false,
-    user: user ? user : null
+    isAuthenticated: false,
+    user: null
 }
 
 export const auth = createSlice({
@@ -14,9 +12,13 @@ export const auth = createSlice({
         login: (state, action) => {
             state.isAuthenticated = true,
             state.user = action.payload
+        },
+        assignUser: (state, action) => {
+            state.user = action.payload
+            state.isAuthenticated = true
         }
     }
 })
 
-export const { login } = auth.actions
+export const { login, assignUser } = auth.actions
 export default auth.reducer

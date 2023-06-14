@@ -1,26 +1,19 @@
 "use client"
-import { getRequest } from "@/api_service"
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import useSWR from "swr"
 
 export default function CustomerHome({ params }) {
-    const [suggestedShops, setSuggestedShops] = useState([])
+    const fetcher = (...args) => fetch(...args).then(res => res.json())
+    const { data, error, isLoading } = useSWR('https://api.npoint.io/0514dee2a2c062fbabb8', fetcher)
 
-    useEffect(() => {
-        getRecommendedRestaurants()
-    }, [])
-
-    const getRecommendedRestaurants = async () => {
-        // This should be changed to our own backend shop list endpoint
-        const response = await getRequest("https://api.npoint.io/0514dee2a2c062fbabb8")
-        setSuggestedShops(response)
-    }
+    if (error) return <div>failed to load</div>
+    if (isLoading) return <div>loading...</div>
 
     return (
         <main>
-            <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {suggestedShops.map((shop, index) => (
+            <section className="grid grid-col-1 lg:grid-cols-2 gap-4 container mx-auto">
+            {data.map((shop, index) => (
                 <div key={index} className="border rounded-lg p-4">
                     <Link href={`/stores/${shop.id}`}>
                         <div className="relative h-[500px]">

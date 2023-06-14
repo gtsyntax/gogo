@@ -6,7 +6,7 @@ export default function Home() {
     <main className="min-h-screen">
       <nav className='container mx-auto flex justify-between items-center mt-4'>
         <ul className='flex items-center'>
-          <li className='font-bold text-5xl py-4'><Link href="/">Gogo</Link></li>
+          <li className='font-bold text-4xl py-4'><Link href="/">Gogo</Link></li>
           <li className='text-xl py-4 pl-8'><Link href="/partner/register">Become a partner</Link></li>
           <li className='text-xl py-4 pl-4'><Link href="/">Become a courier</Link></li>
         </ul>

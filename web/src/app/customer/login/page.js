@@ -17,7 +17,7 @@ export default function CustomerLogin() {
     const handleLogin = async (event) => {
         event.preventDefault()
         const response = await postRequest("/auth/login", {username, password})
-        localStorage.setItem("user", JSON.stringify(response.data))
+        //localStorage.setItem("user", JSON.stringify(response.data))
         dispatch(login(response.data))
         router.push(`/customer/${response.data.id}`)
     }
