@@ -6,9 +6,10 @@ export default function PartnerSettings() {
     const handleUpdate = (event) => {
         event.preventDefault()
     }
+    
     return (
         <main>
-            <h1 className="text-2xl font-bold mb-8">Settings</h1>
+            {/* <h1 className="text-2xl font-bold mb-8">Settings</h1>
             <hr />
             <div className="">
                 <form className="flex flex-col mt-8 gap-4">
@@ -73,7 +74,7 @@ export default function PartnerSettings() {
                     />
                     <button type="submit" className="bg-black text-white rounded-full p-4">Update shop</button>
                 </form>
-            </div>
+            </div> */}
         </main>
     )
 }

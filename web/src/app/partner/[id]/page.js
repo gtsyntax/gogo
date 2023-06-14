@@ -12,17 +12,17 @@ export default function PartnerHome({params}) {
                 <div className="flex flex-col">
                     <div className="my-8">
                         <h3 className="text-xl">Revenue</h3>
-                        <h1 className="text-2xl">$163,633.66</h1>
+                        <h1 className="text-2xl">&#8378;0.00</h1>
                     </div>
 
                     <div className="my-8">
                         <h3 className="text-xl">Active Orders</h3>
-                        <h1 className="text-2xl">66</h1>
+                        <h1 className="text-2xl">0</h1>
                     </div>
 
                     <div className="my-8">
                         <h3 className="text-xl">Orders Completed</h3>
-                        <h1 className="text-2xl">1,766</h1>
+                        <h1 className="text-2xl">0</h1>
                     </div>
 
                     <div className="my-8">

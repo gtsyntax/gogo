@@ -16,9 +16,9 @@ export default function CustomerLogin() {
         event.preventDefault()
         const response = await postRequest("/auth/login", {username, password})
         dispatch(login(response.data))
+        router.push(`/partner/${response.data.id}`)
 
-        const existingShop = await getRequest(`/api/shops/owner/${response.data.id}`)
-        //router.push(`/partner/${response.data.id}`)
+        //const existingShop = await getRequest(`/api/shops/owner/${response.data.id}`)
         //router.push(`/partner/forms/new-store`)
     }
 
