@@ -20,7 +20,18 @@ export default function PartnerShop({ params }) {
     return (
         <main>
             {shop ? (
-                <h1>Shop</h1>
+                <section>
+                    <h1 className="text-2xl font-bold mb-8">Shop</h1>
+                    <hr />
+                    <div className="mt-8 border p-4">
+                        <p className="text-xl">Name: <span className="font-bold">{shop.name}</span></p>
+                        <p className="text-xl">Address: <span className="font-bold">{shop.address}</span></p>
+                        <p className="text-xl">City: <span className="font-bold">{shop.city}</span></p>
+                        <p className="text-xl">Zip Code: <span className="font-bold">{shop.zipCode}</span></p>
+                        <p className="text-xl">Min Delivery Fee: <span className="font-bold">{shop.minDeliveryFee}</span></p>
+                        <p className="text-xl">Created Date: <span className="font-bold">{shop.createdAt}</span></p>
+                    </div>
+                </section>
             ) : (
 
                 <NewStore />
