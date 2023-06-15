@@ -1,6 +1,9 @@
 package com.gogo.base.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
 
 import java.util.Set;
@@ -27,7 +30,7 @@ public class Customer {
     @Column(name = "phone_number", nullable = false)
     private String phone;
 
-    //private Set<Address> addresses;
+    private Address address;
 
     private Set<UUID> cart;
 
