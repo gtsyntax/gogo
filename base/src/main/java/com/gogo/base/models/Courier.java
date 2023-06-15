@@ -29,4 +29,7 @@ public class Courier {
 
     @Column(name = "phone_number", nullable = false)
     private String phone;
+
+    @Column(name = "shop_id")
+    private UUID shopId;
 }
