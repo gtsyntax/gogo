@@ -24,7 +24,7 @@ public class OrderController {
     private final OrderRepository orderRepository;
 
     @GetMapping("/{id}")
-    public Order getOrder(UUID id) {
+    public Order getOrder(@PathVariable("id") UUID id) {
         return orderService.getOrder(id);
     }
 

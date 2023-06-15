@@ -62,7 +62,7 @@ public class OrderService {
     public boolean setStatus(UUID orderId, String status, String note) {
         final Order order = this.getOrder(orderId);
         OrderStatus orderStatus = OrderStatus.valueOf(status);
-        if (orderStatus == OrderStatus.PROCESSING || order.getStatus() != OrderStatus.NEW) {
+        if (orderStatus == OrderStatus.PROCESSING && order.getStatus() != OrderStatus.NEW) {
             return false;
         } else if (orderStatus == OrderStatus.OUT_FOR_DELIVERY && order.getStatus() != OrderStatus.PROCESSING) {
             return false;
