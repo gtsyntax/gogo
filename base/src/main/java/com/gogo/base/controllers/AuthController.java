@@ -4,7 +4,11 @@ import com.gogo.base.config.JwtTokenUtil;
 import com.gogo.base.dto.CredentialsDto;
 import com.gogo.base.dto.MyUserDetails;
 import com.gogo.base.dto.NewUserDto;
-import com.gogo.base.dto.UserDto;
+import com.gogo.base.enumerations.CartStatus;
+import com.gogo.base.exceptions.NotFoundException;
+import com.gogo.base.models.Cart;
+import com.gogo.base.models.User;
+import com.gogo.base.services.CartService;
 import com.gogo.base.services.JwtUserDetailsService;
 import com.gogo.base.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +20,11 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.relation.RoleNotFoundException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @RequiredArgsConstructor
 @RestController
 @CrossOrigin(origins = "*")
@@ -25,6 +34,7 @@ public class AuthController {
     private final UserService userService;
     private final JwtUserDetailsService userDetailsService;
     private final JwtTokenUtil jwtTokenUtil;
+    private final CartService cartService;
 
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody CredentialsDto authenticationRequest) throws Exception {
@@ -36,7 +46,18 @@ public class AuthController {
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new UserDto(userDetails.getId(), userDetails.getUsername(), token));
+        Map<String, String> o = new HashMap();
+        o.put("id", userDetails.getId().toString());
+        o.put("username", userDetails.getUsername());
+        o.put("token", token);
+        User user = userService.getById(userDetails.getId());
+        if (user.getRoles().stream().findFirst().orElseThrow(RoleNotFoundException::new).getName().toString().equals("ROLE_CUSTOMER")) {
+            List<Cart> carts = cartService.getCartsByStatusAndUserId(CartStatus.NEW, user.getId());
+            if (!carts.isEmpty()) {
+                o.put("cart", carts.stream().findFirst().orElseThrow(NotFoundException::new).getId().toString());
+            }
+        }
+        return new ResponseEntity<>(o, HttpStatus.OK);
 
     }
 
