@@ -5,6 +5,7 @@ import com.gogo.base.dto.CredentialsDto;
 import com.gogo.base.dto.MyUserDetails;
 import com.gogo.base.dto.NewUserDto;
 import com.gogo.base.dto.UserDto;
+import com.gogo.base.services.CartService;
 import com.gogo.base.services.JwtUserDetailsService;
 import com.gogo.base.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ public class AuthController {
     private final UserService userService;
     private final JwtUserDetailsService userDetailsService;
     private final JwtTokenUtil jwtTokenUtil;
+    private final CartService cartService;
 
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody CredentialsDto authenticationRequest) throws Exception {
@@ -36,7 +38,7 @@ public class AuthController {
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new UserDto(userDetails.getId(), userDetails.getUsername(), token));
+        return ResponseEntity.ok(new UserDto(userDetails.getId(), userDetails.getUsername(), token, cartService.getCartsByUserId(userDetails.getId())));
 
     }
 
