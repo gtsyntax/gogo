@@ -2,10 +2,7 @@ package com.gogo.base.services;
 
 import com.gogo.base.enumerations.OrderStatus;
 import com.gogo.base.exceptions.NotFoundException;
-import com.gogo.base.models.Address;
-import com.gogo.base.models.Order;
-import com.gogo.base.models.OrderItem;
-import com.gogo.base.models.Product;
+import com.gogo.base.models.*;
 import com.gogo.base.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +17,8 @@ import java.util.UUID;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final ProductService productService;
+    private final CartService cartService;
+    private final CustomerService customerService;
 
     public void createOrder(UUID cartId, List<OrderItem> orderItems) {
         for (OrderItem orderItem : orderItems) {
@@ -32,6 +31,9 @@ public class OrderService {
                 newOrder.setCartId(cartId);
                 newOrder.setStatus(OrderStatus.NEW);
                 newOrder.setCreatedDate(Instant.now());
+                UUID customerId = cartService.getCart(cartId).getUserId();
+                Address deliveryAddress = customerService.getAddress(customerId);
+                newOrder.setDeliveryAddress(deliveryAddress);
                 orderRepository.save(newOrder);
             } else {
                 order.getOrderItems().add(orderItem);
@@ -60,7 +62,7 @@ public class OrderService {
     public boolean setStatus(UUID orderId, String status, String note) {
         final Order order = this.getOrder(orderId);
         OrderStatus orderStatus = OrderStatus.valueOf(status);
-        if (orderStatus == OrderStatus.PROCESSING || order.getStatus() != OrderStatus.NEW) {
+        if (orderStatus == OrderStatus.PROCESSING && order.getStatus() != OrderStatus.NEW) {
             return false;
         } else if (orderStatus == OrderStatus.OUT_FOR_DELIVERY && order.getStatus() != OrderStatus.PROCESSING) {
             return false;
