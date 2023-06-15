@@ -41,7 +41,12 @@ public class CartService {
     }
 
     public List<Cart> getCartsByStatusAndUserId(CartStatus status, UUID userId) {
-        return cartRepository.findByStatusAndUserId(status, userId);
+        List<Cart> carts = cartRepository.findByStatusAndUserId(status, userId);
+        if (carts.isEmpty() && status == CartStatus.NEW) {
+            this.createCart(userService.getById(userId).getUsername());
+            carts = cartRepository.findByStatusAndUserId(status, userId);
+        }
+        return carts;
     }
 
     public boolean setStatus(UUID cartId, CartStatus status) {
