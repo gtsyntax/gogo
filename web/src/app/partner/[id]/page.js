@@ -30,7 +30,8 @@ export default function PartnerHome({params}) {
                         <h1 className="text-2xl">0</h1>
                     </div>
                 </div>
-                <div className="border col-span-3 flex">
+                <div className="border col-span-3 flex justify-center items-center">
+                    <h1 className="text-xl text-gray-400">No data available</h1>
                 </div>
             </div>
         </main>

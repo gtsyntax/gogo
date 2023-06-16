@@ -17,7 +17,7 @@ export default function PartnerRegister() {
         event.preventDefault()
         const payload = {username, email, password, firstName, lastName, phone, role:"partner"}
         const response = await postRequest("/auth/register", payload)
-        console.log(response)
+        //console.log(response)
         router.push("/partner/login")
     }
 
